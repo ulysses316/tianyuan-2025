@@ -12,6 +12,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        karla: ["var(--font-karla)", "sans-serif"],
+        cormorant: ["var(--font-cormorant)", "serif"],
+      },
     },
   },
   plugins: [],
