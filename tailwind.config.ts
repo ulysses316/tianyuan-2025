@@ -11,6 +11,10 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        ty: {
+          0: "#2F2F2F",
+          1000: "#FDF7EF",
+        },
       },
       fontFamily: {
         karla: ["var(--font-karla)", "sans-serif"],
@@ -18,5 +22,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 } satisfies Config;

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
 import { Karla, Cormorant } from "next/font/google";
 import "./globals.css";
 
@@ -26,7 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${karla.variable} ${cormorant.variable} font-karla antialiased`}>{children}</body>
+      <body className={`${karla.variable} ${cormorant.variable} font-karla antialiased`}>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

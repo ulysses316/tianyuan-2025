@@ -1,101 +1,82 @@
 import Image from "next/image";
+import Button from "@/components/shared/Button";
+import LinkWArrow from "@/components/shared/LinkWArrow";
+import ClientsCarousel from "@/components/clients/ClientsCarousel";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <section className="grid h-[820px] grid-cols-1 items-center gap-16 px-4 md:grid-cols-2 md:px-20 lg:px-28">
+        <div>
+          <h1 className="pb-4 font-cormorant text-6xl lg:text-7xl">
+            Tu salud es <span className="font-bold text-pink-300">nuestra prioridad</span>
+          </h1>
+          <p className="text-lg lg:text-xl">
+            En nuestro centro, exploramos diversas rutas hacia el bienestar integral, destacando la
+            efectividad de la acupuntura y otras terapias complementarias. Descubre cómo estas prácticas
+            pueden aliviar el estrés, mejorar tu energía y equilibrar tu cuerpo y mente. ¡Tu camino hacia una
+            vida más saludable comienza aquí!
+          </p>
+          <div className="mt-7 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center lg:gap-0">
+            <Button href="#" className="">
+              Agenda una cita
+            </Button>
+            <LinkWArrow href="/services">Explora nuestos servicios</LinkWArrow>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className="-order-1 justify-self-center md:order-1">
+          <div className="relative h-[300px] w-dvw md:h-[500px] md:w-[400px] lg:h-[600px] lg:w-[500px]">
+            <Image className="object-cover md:rounded-full" src={"/images/health.jpg"} alt="" fill />
+          </div>
+        </div>
+      </section>
+
+      <section className="mb-16 px-4 md:px-20 lg:px-28">
+        <div className="mb-16 flex flex-col items-center gap-4">
+          <h2 className="text-center font-cormorant text-5xl">Medicina tradicional china</h2>
+          <p className="w-full text-center text-lg md:w-1/3">
+            La Medicina Tradicional China equilibra cuerpo y mente con técnicas como acupuntura, hierbas y
+            qigong.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 justify-items-center gap-4 gap-y-8 sm:grid-cols-3 sm:grid-rows-2">
+          <div>
+            <h3 className="text-center text-2xl">Alivio del dolor crónico</h3>
+            <p className="text-center text-lg">Reduce inflamación y mejora la circulación con acupuntura.</p>
+          </div>
+          <div className="sm:col-start-1 sm:row-start-2">
+            <h3 className="text-center text-2xl">Fortalece el sistema inmunológico</h3>
+            <p className="text-center text-lg">Refuerza defensas con hierbas y acupuntura.</p>
+          </div>
+          <div className="self-center sm:col-start-2 sm:row-span-2 sm:row-start-1">
+            <Image src={"/logo.webp"} alt="" width={300} height={300} />
+          </div>
+          <div className="sm:col-start-3 sm:row-start-1">
+            <h3 className="text-center text-2xl">Reducción del estrés</h3>
+            <p className="text-center text-lg">Relaja cuerpo y mente con qigong y masajes.</p>
+          </div>
+          <div className="sm:col-start-3">
+            <h3 className="text-center text-2xl">Mejora la digestión</h3>
+            <p className="text-center text-lg">Alivia problemas como gastritis con dietética china.</p>
+          </div>
+        </div>
+        <div className="mt-16 flex justify-center">
+          <Button href="/services">Descubre más servicios</Button>
+        </div>
+      </section>
+
+      <section className="flex flex-col items-center justify-center bg-ty-0 px-4 py-20 text-white md:px-20 lg:px-28">
+        <div className="mb-6 flex aspect-square items-center justify-center rounded-full bg-white p-2">
+          <Image src={"/logo.webp"} alt="" width={55} height={50} />
+        </div>
+        <p className="text-center text-lg font-light md:text-3xl lg:text-4xl">
+          En nuestro centro, estamos profundamente comprometidos con el bienestar integral de cada uno de
+          nuestros pacientes. A través de tratamientos personalizados y técnicas basadas en la{" "}
+          <span className="text-pink-300">Medicina Tradicional China,</span> trabajamos para mejorar tu
+          calidad de vida y aliviar tus molestias.
+        </p>
+        <ClientsCarousel />
+      </section>
+    </>
   );
 }
