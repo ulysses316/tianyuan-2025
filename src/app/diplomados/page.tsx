@@ -15,8 +15,8 @@ export default async function page() {
   return (
     <>
       <BannerPages
-        title="Nuestros servicios"
-        text="Ofrecemos una variedad de terapias y prácticas complementarias, que incluyen acupuntura, medicina herbal y curación energética, para promover la salud y el bienestar óptimos."
+        title="Nuestros diplomados"
+        text="Descubre nuestra selección de diplomados diseñados para potenciar tus habilidades y conocimientos en diversas áreas. Aprende de expertos y avanza en tu desarrollo personal y profesional."
         src="/images/about-us.jpg"
       />
       {/* <section className="mb-12 flex items-center justify-center">
@@ -26,12 +26,7 @@ export default async function page() {
         />
       </section> */}
       <section className="mb-12 px-4 md:px-20 lg:px-28">
-        <div className="grid grid-cols-1 gap-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(3,370px)]">
-          <ServiceCard />
-          <ServiceCard />
-          <ServiceCard />
-          <ServiceCard />
-          <ServiceCard />
+        <div className="grid grid-cols-1 gap-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(2,555px)]">
           <ServiceCard />
           <ServiceCard />
           <ServiceCard />

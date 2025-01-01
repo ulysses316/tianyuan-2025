@@ -17,6 +17,12 @@ export default function Header() {
     setIsClient(true);
   }, []);
 
+  const handdleCloseMobile = () => {
+    setTimeout(() => {
+      setShowMenu(false);
+    }, 500);
+  };
+
   return (
     <>
       <header
@@ -61,19 +67,19 @@ export default function Header() {
             }`}
           >
             <div className="flex h-5/6 flex-col items-center justify-center gap-4 pt-16">
-              <Link href="/">
+              <Link onClick={handdleCloseMobile} href="/">
                 <Image src="/logo.webp" alt="logo" width={55} height={50} />
               </Link>
-              <HeaderLink href="/" active={pathname === "/"}>
+              <HeaderLink onClick={handdleCloseMobile} href="/" active={pathname === "/"}>
                 Inicio
               </HeaderLink>
-              <HeaderLink href="/nosotros" active={pathname === "/nosotros"}>
+              <HeaderLink onClick={handdleCloseMobile} href="/nosotros" active={pathname === "/nosotros"}>
                 Nosotros
               </HeaderLink>
-              <HeaderLink href="/servicios" active={pathname === "/servicios"}>
+              <HeaderLink onClick={handdleCloseMobile} href="/servicios" active={pathname === "/servicios"}>
                 Servicios
               </HeaderLink>
-              <HeaderLink href="/diplomados" active={pathname === "/diplomados"}>
+              <HeaderLink onClick={handdleCloseMobile} href="/diplomados" active={pathname === "/diplomados"}>
                 Diplomados
               </HeaderLink>
               <Button href="#">Agendar cita</Button>
