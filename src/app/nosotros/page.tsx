@@ -11,7 +11,12 @@ export default async function page() {
 
   return (
     <>
-      <BannerPages />
+      <BannerPages
+        title="Sobre nosotros"
+        text="Nuestra medicina alternativa ofrece un entorno de apoyo y estímulo donde usted puede explorar sus
+          objetivos de salud y bienestar y encontrar el mejor camino para usted."
+        src="/images/about-us.jpg"
+      />
       <section className="mb-12 flex items-center justify-center">
         <div
           className="prose prose-lg px-4 prose-headings:font-cormorant md:px-0"

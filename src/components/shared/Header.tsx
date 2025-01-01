@@ -64,16 +64,16 @@ export default function Header() {
               <Link href="/">
                 <Image src="/logo.webp" alt="logo" width={55} height={50} />
               </Link>
-              <HeaderLink href="#" active={pathname === "/"}>
+              <HeaderLink href="/" active={pathname === "/"}>
                 Inicio
               </HeaderLink>
-              <HeaderLink href="#" active={pathname === "/nosotros"}>
+              <HeaderLink href="/nosotros" active={pathname === "/nosotros"}>
                 Nosotros
               </HeaderLink>
-              <HeaderLink href="#" active={pathname === "/servicios"}>
+              <HeaderLink href="/servicios" active={pathname === "/servicios"}>
                 Servicios
               </HeaderLink>
-              <HeaderLink href="#" active={pathname === "/diplomados"}>
+              <HeaderLink href="/diplomados" active={pathname === "/diplomados"}>
                 Diplomados
               </HeaderLink>
               <Button href="#">Agendar cita</Button>

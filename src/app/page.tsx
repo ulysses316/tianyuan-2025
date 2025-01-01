@@ -6,7 +6,7 @@ import ClientsCarousel from "@/components/clients/ClientsCarousel";
 export default function Home() {
   return (
     <>
-      <section className="grid h-[820px] grid-cols-1 items-center gap-16 px-4 md:grid-cols-2 md:px-20 lg:px-28">
+      <section className="mb-12 grid min-h-[820px] grid-cols-1 items-center gap-16 px-4 md:mb-0 md:grid-cols-2 md:px-20 lg:px-28">
         <div>
           <h1 className="pb-4 font-cormorant text-6xl lg:text-7xl">
             Tu salud es <span className="font-bold text-pink-300">nuestra prioridad</span>
