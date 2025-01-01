@@ -6,7 +6,7 @@ export default function ServiceCard() {
   return (
     <div className="flex flex-col items-start justify-center gap-4">
       <div className="relative h-72 w-full">
-        <Image className="rounded-lg" src={"/images/about-us.jpg"} fill alt="" />
+        <Image className="rounded-lg object-cover" src={"/images/about-us.jpg"} fill alt="" />
       </div>
       <h2 className="font-cormorant text-3xl">Masaje</h2>
       <p className="text-lg">
