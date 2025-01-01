@@ -14,21 +14,20 @@ export type Layout = {
   children: ReactNode;
 };
 
+export type ParamSlug = {
+  params: Promise<{ slug: string }>;
+};
+
 export type SVG = {
   className?: string;
 };
 
-// export type StrapiResponseDefaultFields = {
-//   id: number;
-//   documentId: string;
-//   createdAt: string;
-//   publishedAt: string;
-// };
-
-// export type StrapiResponseNosotros = StrapiResponseDefaultFields & {
-//   // title: string;
-//   content: string | TrustedHTML;
-// };
+export type ServiceCardProps = {
+  title: string;
+  description: string;
+  href: string;
+  src?: string;
+};
 
 export type StrapiResponseDefaultFields<T = object> = {
   data: {
@@ -39,6 +38,31 @@ export type StrapiResponseDefaultFields<T = object> = {
   } & T;
 };
 
+export type StrapiResponseDefaultFieldsCollection<T = object> = {
+  data: Array<
+    {
+      id: number;
+      documentId: string;
+      createdAt: string;
+      publishedAt: string;
+    } & T
+  >;
+};
+
 export type StrapiResponseNosotros = StrapiResponseDefaultFields<{
   content: string | TrustedHTML;
+}>;
+
+export type StrapiResponseServicios = StrapiResponseDefaultFieldsCollection<{
+  titulo: string;
+  descripcion: string;
+  contenido: string | TrustedHTML;
+  slug: string;
+}>;
+
+export type StrapiResponseServicio = StrapiResponseDefaultFieldsCollection<{
+  titulo: string;
+  descripcion: string;
+  contenido: string | TrustedHTML;
+  slug: string;
 }>;
