@@ -9,9 +9,7 @@ import type { ParamSlug } from "@/utils/types";
 export default async function page({ params }: ParamSlug) {
   const { slug } = await params;
 
-  const content: AxiosResponse<StrapiResponseServicio> = await strapi(
-    `/api/servicios?filters[slug][$eq]=${slug}`,
-  );
+  const content: AxiosResponse<StrapiResponseServicio> = await strapi(`/api/servicios?filters[slug][$eq]=${slug}`);
   if (content.status !== 200) return notFound();
 
   return (
@@ -23,7 +21,7 @@ export default async function page({ params }: ParamSlug) {
       />
       <section className="mb-12 flex items-center justify-center">
         <div
-          className="prose prose-lg px-4 prose-headings:font-cormorant md:px-0"
+          className="prose prose-lg px-4 prose-headings:font-cormorant prose-figure:flex prose-figure:w-full prose-figure:justify-center prose-img:w-full prose-img:sm:w-1/2 md:px-0"
           dangerouslySetInnerHTML={{ __html: content.data.data[0].contenido }}
         />
       </section>
