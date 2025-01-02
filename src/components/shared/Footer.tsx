@@ -17,16 +17,16 @@ export default function Footer() {
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
         <Image src="/logo.webp" alt="logo" width={60} height={55} />
         <div className="flex flex-wrap items-center justify-center gap-8 sm:flex-nowrap">
-          <HeaderLink href="#" active={pathname === "/"}>
+          <HeaderLink href="/" active={pathname === "/"}>
             Inicio
           </HeaderLink>
-          <HeaderLink href="#" active={pathname === "/nosotros"}>
+          <HeaderLink href="/nosotros" active={pathname === "/nosotros"}>
             Nosotros
           </HeaderLink>
-          <HeaderLink href="#" active={pathname === "/servicios"}>
+          <HeaderLink href="/servicios" active={pathname === "/servicios"}>
             Servicios
           </HeaderLink>
-          <HeaderLink href="#" active={pathname === "/diplomados"}>
+          <HeaderLink href="/diplomados" active={pathname === "/diplomados"}>
             Diplomados
           </HeaderLink>
         </div>
@@ -64,10 +64,7 @@ export default function Footer() {
           >
             <Whatsapp className="w-6" />
           </a>
-          <a
-            href="https://www.facebook.com/people/Terapias-Integrativas-Tian-Yuan/100091659327893/"
-            target="_blank"
-          >
+          <a href="https://www.facebook.com/people/Terapias-Integrativas-Tian-Yuan/100091659327893/" target="_blank">
             <Facebook className="w-6" />
           </a>
           <a href="https://www.instagram.com/acu_arelyanez/" target="_blank" rel="noopener noreferrer">

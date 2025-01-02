@@ -5,12 +5,13 @@ import React from "react";
 // import { notFound } from "next/navigation";
 import BannerPages from "@/components/shared/BannerPages";
 // import ServiceCard from "@/components/services/ServiceCard";
-import ClientsCarousel from "@/components/clients/ClientsCarousel";
-import TermServices from "@/components/services/Terms";
+// import ClientsCarousel from "@/components/clients/ClientsCarousel";
+// import TermServices from "@/components/services/Terms";
+// import { AxiosResponse } from "axios";
 
 export default async function page() {
-  // const content: AxiosResponse<StrapiResponseNosotros> = await strapi("/api/nosotro");
-  // if (content.status !== 200) return notFound();
+  // let content: AxiosResponse<StrapiResponseServicios> | null = null;
+  // let terms: AxiosResponse<StrapiResponseTerms> | null = null;
 
   return (
     <>
@@ -33,11 +34,11 @@ export default async function page() {
           <ServiceCard /> */}
         </div>
       </section>
-      <section className="mb-12 min-h-72 px-4 text-lg md:px-20 lg:px-28">
+      {/* <section className="mb-12 min-h-72 px-4 text-lg md:px-20 lg:px-28">
         <ClientsCarousel />
       </section>
 
-      <TermServices />
+      <TermServices /> */}
     </>
   );
 }

@@ -29,6 +29,25 @@ export type ServiceCardProps = {
   src?: string;
 };
 
+export type CommentsCarouselProps = {
+  comments: Array<{
+    id: number;
+    nombre: string;
+    comentario: string;
+    estrellas: number;
+  }>;
+};
+
+export type TermsAndConditionsProps = {
+  terms: Array<{
+    titulo: string;
+    termino: string;
+    numero: number;
+  }>;
+};
+
+// Single Types
+// Base Single Types
 export type StrapiResponseDefaultFields<T = object> = {
   data: {
     id: number;
@@ -37,6 +56,25 @@ export type StrapiResponseDefaultFields<T = object> = {
     publishedAt: string;
   } & T;
 };
+
+export type StrapiResponseNosotros = StrapiResponseDefaultFields<{
+  contenido: string | TrustedHTML;
+  descripcion: string;
+}>;
+
+export type StrapiResponseHome = StrapiResponseDefaultFields<{
+  titulo: string;
+  titulo_rosa: string;
+  parrafo_principal: string;
+  parrafo_seccion_negra: string;
+}>;
+
+export type StrapiResponseServicePage = StrapiResponseDefaultFields<{
+  parrafo_principal: string;
+}>;
+
+// Collection types
+// Base Collection types
 
 export type StrapiResponseDefaultFieldsCollection<T = object> = {
   data: Array<
@@ -48,10 +86,6 @@ export type StrapiResponseDefaultFieldsCollection<T = object> = {
     } & T
   >;
 };
-
-export type StrapiResponseNosotros = StrapiResponseDefaultFields<{
-  content: string | TrustedHTML;
-}>;
 
 export type StrapiResponseServicios = StrapiResponseDefaultFieldsCollection<{
   titulo: string;
@@ -65,4 +99,17 @@ export type StrapiResponseServicio = StrapiResponseDefaultFieldsCollection<{
   descripcion: string;
   contenido: string | TrustedHTML;
   slug: string;
+}>;
+
+export type StrapiResponseComments = StrapiResponseDefaultFieldsCollection<{
+  nombre: string;
+  comentario: string;
+  estrellas: number;
+  tipo: "servicio" | "diplomado";
+}>;
+
+export type StrapiResponseTerms = StrapiResponseDefaultFieldsCollection<{
+  titulo: string;
+  termino: string;
+  numero: number;
 }>;

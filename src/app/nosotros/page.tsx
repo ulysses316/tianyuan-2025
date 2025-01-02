@@ -6,21 +6,16 @@ import { notFound } from "next/navigation";
 import BannerPages from "@/components/shared/BannerPages";
 
 export default async function page() {
-  const content: AxiosResponse<StrapiResponseNosotros> = await strapi("/api/nosotro");
+  const content: AxiosResponse<StrapiResponseNosotros> = await strapi<StrapiResponseNosotros>("/api/nosotro");
   if (content.status !== 200) return notFound();
 
   return (
     <>
-      <BannerPages
-        title="Sobre nosotros"
-        text="Nuestra medicina alternativa ofrece un entorno de apoyo y estímulo donde usted puede explorar sus
-          objetivos de salud y bienestar y encontrar el mejor camino para usted."
-        src="/images/about-us.jpg"
-      />
+      <BannerPages title="Sobre nosotros" text={content.data.data.descripcion} src="/images/about-us.jpg" />
       <section className="mb-12 flex items-center justify-center">
         <div
           className="prose prose-lg px-4 prose-headings:font-cormorant md:px-0"
-          dangerouslySetInnerHTML={{ __html: content.data.data.content }}
+          dangerouslySetInnerHTML={{ __html: content.data.data.contenido }}
         />
       </section>
     </>
