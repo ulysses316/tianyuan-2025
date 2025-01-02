@@ -29,6 +29,13 @@ export type ServiceCardProps = {
   src?: string;
 };
 
+export type DiplomadoCardProps = {
+  title: string;
+  description: string;
+  href: string;
+  src?: string;
+};
+
 export type CommentsCarouselProps = {
   comments: Array<{
     id: number;
@@ -73,6 +80,10 @@ export type StrapiResponseServicePage = StrapiResponseDefaultFields<{
   parrafo_principal: string;
 }>;
 
+export type StrapiResponseDiplomadosPage = StrapiResponseDefaultFields<{
+  parrafo_principal: string;
+}>;
+
 // Collection types
 // Base Collection types
 
@@ -95,6 +106,13 @@ export type StrapiResponseServicios = StrapiResponseDefaultFieldsCollection<{
 }>;
 
 export type StrapiResponseServicio = StrapiResponseDefaultFieldsCollection<{
+  titulo: string;
+  descripcion: string;
+  contenido: string | TrustedHTML;
+  slug: string;
+}>;
+
+export type StrapiResponseDiplomado = StrapiResponseDefaultFieldsCollection<{
   titulo: string;
   descripcion: string;
   contenido: string | TrustedHTML;
