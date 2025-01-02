@@ -29,7 +29,7 @@ export default function Header() {
         className={`relative flex items-center justify-center px-16 pb-4 pt-6 md:justify-around ${pathname !== "/" && "text-white"}`}
       >
         <Link className={`${pathname !== "/" && "rounded-full bg-white"}`} href="/">
-          <Image src="/logo.webp" alt="logo" width={55} height={50} />
+          <Image src="/logo.webp" alt="logo" width={66} height={50} />
         </Link>
         <div className="hidden items-center justify-center gap-6 md:flex">
           <HeaderLink className="text-lg" href="/" active={pathname === "/"}>
@@ -85,11 +85,7 @@ export default function Header() {
               <Button href="#">Agendar cita</Button>
             </div>
             <div>
-              <X
-                size={24}
-                className="absolute right-4 top-10 cursor-pointer"
-                onClick={() => setShowMenu(false)}
-              />
+              <X size={24} className="absolute right-4 top-10 cursor-pointer" onClick={() => setShowMenu(false)} />
             </div>
           </div>,
           document.body,

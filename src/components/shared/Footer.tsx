@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <footer className="bg-pink-100 px-4 pb-16 pt-16 md:px-20 lg:px-40">
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
-        <Image src="/logo.webp" alt="logo" width={60} height={55} />
+        <Image src="/logo.webp" alt="logo" width={75} height={55} />
         <div className="flex flex-wrap items-center justify-center gap-8 sm:flex-nowrap">
           <HeaderLink href="/" active={pathname === "/"}>
             Inicio

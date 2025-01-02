@@ -3,11 +3,15 @@ import Image from "next/image";
 import LinkWArrow from "../shared/LinkWArrow";
 import type { ServiceCardProps } from "@/utils/types";
 
-export default function ServiceCard({ title, description, href }: ServiceCardProps) {
+export default function ServiceCard({ title, description, href, src }: ServiceCardProps) {
   return (
     <div className="flex flex-col items-start gap-4">
       <div className="relative h-72 w-full">
-        <Image className="rounded-lg object-cover" src={"/images/about-us.jpg"} fill alt="" />
+        {src ? (
+          <Image className="rounded-lg object-cover" src={src} fill alt="" />
+        ) : (
+          <Image className="rounded-lg object-cover" src={"/images/about-us.jpg"} fill alt="" />
+        )}
       </div>
       <h2 className="font-cormorant text-3xl">{title}</h2>
       <p className="text-lg">{description}</p>

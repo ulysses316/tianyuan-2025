@@ -1,3 +1,4 @@
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { ReactNode } from "react";
 
 export type ButtonProps = {
@@ -26,7 +27,7 @@ export type ServiceCardProps = {
   title: string;
   description: string;
   href: string;
-  src?: string;
+  src?: string | StaticImport;
 };
 
 export type DiplomadoCardProps = {
@@ -67,6 +68,7 @@ export type StrapiResponseDefaultFields<T = object> = {
 export type StrapiResponseNosotros = StrapiResponseDefaultFields<{
   contenido: string | TrustedHTML;
   descripcion: string;
+  imagen: StrapiMedia;
 }>;
 
 export type StrapiResponseHome = StrapiResponseDefaultFields<{
@@ -78,10 +80,12 @@ export type StrapiResponseHome = StrapiResponseDefaultFields<{
 
 export type StrapiResponseServicePage = StrapiResponseDefaultFields<{
   parrafo_principal: string;
+  imagen: StrapiMedia;
 }>;
 
 export type StrapiResponseDiplomadosPage = StrapiResponseDefaultFields<{
   parrafo_principal: string;
+  imagen: StrapiMedia;
 }>;
 
 // Collection types
@@ -103,6 +107,7 @@ export type StrapiResponseServicios = StrapiResponseDefaultFieldsCollection<{
   descripcion: string;
   contenido: string | TrustedHTML;
   slug: string;
+  imagen: StrapiMedia;
 }>;
 
 export type StrapiResponseServicio = StrapiResponseDefaultFieldsCollection<{
@@ -110,6 +115,7 @@ export type StrapiResponseServicio = StrapiResponseDefaultFieldsCollection<{
   descripcion: string;
   contenido: string | TrustedHTML;
   slug: string;
+  imagen: StrapiMedia;
 }>;
 
 export type StrapiResponseDiplomado = StrapiResponseDefaultFieldsCollection<{
@@ -117,6 +123,7 @@ export type StrapiResponseDiplomado = StrapiResponseDefaultFieldsCollection<{
   descripcion: string;
   contenido: string | TrustedHTML;
   slug: string;
+  imagen: StrapiMedia;
 }>;
 
 export type StrapiResponseComments = StrapiResponseDefaultFieldsCollection<{
@@ -131,3 +138,45 @@ export type StrapiResponseTerms = StrapiResponseDefaultFieldsCollection<{
   termino: string;
   numero: number;
 }>;
+
+// Strapi Media Types
+
+export type StrapiMedia = {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText: string | null;
+  caption: string | null;
+  width: number;
+  height: number;
+  formats: {
+    large: FormatStrapiMedia;
+    small: FormatStrapiMedia;
+    medium: FormatStrapiMedia;
+    thumbnail: FormatStrapiMedia;
+  };
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: null;
+  provider: string;
+  provider_metadata: null;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+};
+
+export type FormatStrapiMedia = {
+  ext: string;
+  url: string;
+  hash: string;
+  mime: string;
+  name: string;
+  path: null;
+  size: number;
+  width: number;
+  height: number;
+  sizeInBytes: number;
+};

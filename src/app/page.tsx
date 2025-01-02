@@ -79,8 +79,8 @@ export default async function Home() {
         </section>
 
         <section className="flex flex-col items-center justify-center bg-ty-0 px-4 py-20 text-white md:px-20 lg:px-28">
-          <div className="mb-6 flex aspect-square items-center justify-center rounded-full bg-white p-2">
-            <Image src={"/logo.webp"} alt="" width={55} height={50} />
+          <div className="mb-6 flex aspect-square items-center justify-center rounded-full bg-white p-0.5">
+            <Image src={"/logo.webp"} alt="" width={75} height={50} />
           </div>
           <p className="text-center text-lg font-light md:text-3xl lg:text-4xl">
             {dataHome.data.data.parrafo_seccion_negra}

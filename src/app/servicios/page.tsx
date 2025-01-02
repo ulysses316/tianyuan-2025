@@ -12,6 +12,7 @@ import BannerPages from "@/components/shared/BannerPages";
 import ServiceCard from "@/components/services/ServiceCard";
 import ClientsCarousel from "@/components/clients/ClientsCarousel";
 import TermServices from "@/components/services/Terms";
+import config from "@/utils/config";
 
 export default async function page() {
   let content: AxiosResponse<StrapiResponseServicios> | null = null;
@@ -20,7 +21,7 @@ export default async function page() {
   let pageContent: AxiosResponse<StrapiResponseServicePage> | null = null;
 
   const [contentResponse, termsResponse, commentsResponse, servicePageResponse] = await Promise.allSettled([
-    strapi.get<StrapiResponseServicios>("/api/servicios"),
+    strapi.get<StrapiResponseServicios>("/api/servicios?populate=imagen&sort=id:desc"),
     strapi.get<StrapiResponseTerms>("/api/terminos-y-condiciones?sort=numero:asc"),
     strapi.get<StrapiResponseComments>("/api/comentarios"),
     strapi.get<StrapiResponseServicePage>("/api/servicios-pagina"),
@@ -38,7 +39,7 @@ export default async function page() {
       <BannerPages
         title="Nuestros servicios"
         text={pageContent?.data.data.parrafo_principal || ""}
-        src="/images/about-us.jpg"
+        src={pageContent?.data.data.imagen?.url || "/images/about-us.jpg"}
       />
       <section className="mb-12 px-4 md:px-20 lg:px-28">
         <div className="grid grid-cols-1 gap-x-6 gap-y-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(3,370px)]">
@@ -49,11 +50,16 @@ export default async function page() {
                 title={service.titulo}
                 description={service.descripcion}
                 href={service.slug}
+                src={
+                  typeof service.imagen?.formats.small.url !== "undefined"
+                    ? `${config.NEXT_PUBLIC_API_URL}${service.imagen?.formats.small.url}`
+                    : "/images/about-us.jpg"
+                }
               />
             ))}
         </div>
       </section>
-      <section className="mb-12 min-h-72 px-4 text-lg md:px-20 lg:px-28">
+      <section className="mb-12 min-h-96 px-4 text-lg sm:min-h-72 md:px-20 lg:px-28">
         {comments !== null && <ClientsCarousel comments={comments.data.data} />}
       </section>
 
