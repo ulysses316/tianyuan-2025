@@ -24,7 +24,7 @@ export default async function page() {
     strapi.get<StrapiResponseServicios>("/api/servicios?populate=imagen&sort=id:desc"),
     strapi.get<StrapiResponseTerms>("/api/terminos-y-condiciones?sort=numero:asc"),
     strapi.get<StrapiResponseComments>("/api/comentarios"),
-    strapi.get<StrapiResponseServicePage>("/api/servicios-pagina"),
+    strapi.get<StrapiResponseServicePage>("/api/servicios-pagina?populate=imagen"),
   ]);
 
   if (contentResponse.status === "fulfilled") content = contentResponse.value;
@@ -39,7 +39,11 @@ export default async function page() {
       <BannerPages
         title="Nuestros servicios"
         text={pageContent?.data.data.parrafo_principal || ""}
-        src={pageContent?.data.data.imagen?.url || "/images/about-us.jpg"}
+        src={
+          typeof pageContent?.data.data.imagen.url !== undefined
+            ? `${config.NEXT_PUBLIC_API_URL}${pageContent?.data.data.imagen.url}`
+            : "/images/about-us.jpg"
+        }
       />
       <section className="mb-12 px-4 md:px-20 lg:px-28">
         <div className="grid grid-cols-1 gap-x-6 gap-y-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(3,370px)]">

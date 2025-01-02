@@ -12,6 +12,7 @@ import BannerPages from "@/components/shared/BannerPages";
 import DiplomadoCard from "@/components/diplomados/DiplomadoCard";
 import ClientsCarousel from "@/components/clients/ClientsCarousel";
 import TermServices from "@/components/services/Terms";
+import config from "@/utils/config";
 
 export default async function page() {
   let diplomados: AxiosResponse<StrapiResponseDiplomado> | null = null;
@@ -20,10 +21,10 @@ export default async function page() {
   let pageContent: AxiosResponse<StrapiResponseDiplomadosPage> | null = null;
 
   const [diplomadosResponse, termsResponse, commentsResponse, diplomadosPageResponse] = await Promise.allSettled([
-    strapi.get<StrapiResponseDiplomado>("/api/dilpomados"),
+    strapi.get<StrapiResponseDiplomado>("/api/dilpomados?populate=imagen"),
     strapi.get<StrapiResponseTerms>("/api/terminos-y-condiciones?sort=numero:asc"),
     strapi.get<StrapiResponseComments>("/api/comentarios"),
-    strapi.get<StrapiResponseDiplomadosPage>("/api/dilpomados-pagina"),
+    strapi.get<StrapiResponseDiplomadosPage>("/api/dilpomados-pagina?populate=imagen"),
   ]);
 
   if (diplomadosResponse.status === "fulfilled") diplomados = diplomadosResponse.value;
@@ -38,7 +39,11 @@ export default async function page() {
       <BannerPages
         title="Nuestros diplomados"
         text={pageContent?.data.data.parrafo_principal || ""}
-        src="/images/about-us.jpg"
+        src={
+          typeof pageContent?.data.data.imagen.url !== undefined
+            ? `${config.NEXT_PUBLIC_API_URL}${pageContent?.data.data.imagen.url}`
+            : "/images/about-us.jpg"
+        }
       />
       <section className="mb-12 px-4 md:px-20 lg:px-28">
         <div className="grid grid-cols-1 gap-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(2,555px)]">
@@ -49,6 +54,11 @@ export default async function page() {
                 title={diplomado.titulo}
                 description={diplomado.descripcion}
                 href={diplomado.slug}
+                src={
+                  typeof diplomado.imagen?.formats.small.url !== "undefined"
+                    ? `${config.NEXT_PUBLIC_API_URL}${diplomado.imagen?.formats.small.url}`
+                    : "/images/about-us.jpg"
+                }
               />
             ))}
         </div>

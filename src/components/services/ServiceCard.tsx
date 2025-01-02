@@ -7,11 +7,7 @@ export default function ServiceCard({ title, description, href, src }: ServiceCa
   return (
     <div className="flex flex-col items-start gap-4">
       <div className="relative h-72 w-full">
-        {src ? (
-          <Image className="rounded-lg object-cover" src={src} fill alt="" />
-        ) : (
-          <Image className="rounded-lg object-cover" src={"/images/about-us.jpg"} fill alt="" />
-        )}
+        <Image className="rounded-lg object-cover" src={src} fill alt="" />
       </div>
       <h2 className="font-cormorant text-3xl">{title}</h2>
       <p className="text-lg">{description}</p>

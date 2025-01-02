@@ -27,14 +27,14 @@ export type ServiceCardProps = {
   title: string;
   description: string;
   href: string;
-  src?: string | StaticImport;
+  src: string | StaticImport;
 };
 
 export type DiplomadoCardProps = {
   title: string;
   description: string;
   href: string;
-  src?: string;
+  src: string;
 };
 
 export type CommentsCarouselProps = {
