@@ -76,6 +76,17 @@ export type StrapiResponseHome = StrapiResponseDefaultFields<{
   titulo_rosa: string;
   parrafo_principal: string;
   parrafo_seccion_negra: string;
+  imagen_principal: StrapiMedia;
+  mtc_titulo: string;
+  mtc_parrafo: string;
+  mtc_beneficio_1_titulo: string;
+  mtc_beneficio_2_titulo: string;
+  mtc_beneficio_3_titulo: string;
+  mtc_beneficio_4_titulo: string;
+  mtc_beneficio_1_texto: string;
+  mtc_beneficio_2_texto: string;
+  mtc_beneficio_3_texto: string;
+  mtc_beneficio_4_texto: string;
 }>;
 
 export type StrapiResponseServicePage = StrapiResponseDefaultFields<{
