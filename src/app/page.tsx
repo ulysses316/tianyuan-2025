@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Button from "@/components/shared/Button";
 import LinkWArrow from "@/components/shared/LinkWArrow";
@@ -7,6 +8,10 @@ import { StrapiResponseHome, StrapiResponseComments } from "@/utils/types";
 import { strapi } from "@/utils/strapi";
 import { notFound } from "next/navigation";
 import config from "@/utils/config";
+
+export const metadata: Metadata = {
+  title: "Inicio | Centro de terapias y acupuntura Tian Yuan",
+};
 
 export default async function Home() {
   let dataHome: AxiosResponse<StrapiResponseHome> | null = null;
@@ -82,7 +87,7 @@ export default async function Home() {
             </div>
           </div>
           <div className="mt-16 flex justify-center">
-            <Button href="/services">Descubre más servicios</Button>
+            <Button href="/servicios">Descubre más servicios</Button>
           </div>
         </section>
 
