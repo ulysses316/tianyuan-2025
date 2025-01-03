@@ -69,6 +69,8 @@ export default async function Home() {
           <div className="-order-1 justify-self-center md:order-1">
             <div className="relative h-[300px] w-dvw md:h-[500px] md:w-[400px] lg:h-[600px] lg:w-[500px]">
               <Image
+                loading="eager"
+                priority
                 className="object-cover md:rounded-full"
                 src={
                   typeof dataHome.data.data?.imagen_principal?.url !== "undefined"

@@ -41,10 +41,10 @@ export default function ClientsCarousel({ comments }: CommentsCarouselProps) {
               ))}
             </div>
             <div className="flex justify-between gap-8">
-              <button onClick={handdlePrev}>
+              <button aria-label="Comentario anterior" onClick={handdlePrev}>
                 <ChevronLeft />
               </button>
-              <button onClick={handdleNext}>
+              <button aria-label="Comentario siguiente" onClick={handdleNext}>
                 <ChevronRight />
               </button>
             </div>

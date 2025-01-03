@@ -60,17 +60,21 @@ export default function Footer() {
           <a
             href="https://wa.me/5531202502?text=%C2%A1Hola%21%20Me%20interesa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de..."
             target="_blank"
-            rel="noopener noreferrer"
+            aria-label="Whatsapp"
           >
             <Whatsapp className="w-6" />
           </a>
-          <a href="https://www.facebook.com/people/Terapias-Integrativas-Tian-Yuan/100091659327893/" target="_blank">
+          <a
+            href="https://www.facebook.com/people/Terapias-Integrativas-Tian-Yuan/100091659327893/"
+            target="_blank"
+            aria-label="Facebook"
+          >
             <Facebook className="w-6" />
           </a>
-          <a href="https://www.instagram.com/acu_arelyanez/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/acu_arelyanez/" target="_blank" aria-label="Instagram">
             <Instagram className="w-6" />
           </a>
-          <a href="mailto:cecti_tianyuan@gmail.com">
+          <a href="mailto:cecti_tianyuan@gmail.com" aria-label="Correo">
             <Mail className="w-6" />
           </a>
         </div>
