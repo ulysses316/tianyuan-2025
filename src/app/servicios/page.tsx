@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import { strapi } from "@/utils/strapi";
 import { AxiosResponse } from "axios";
 import {
@@ -13,6 +14,28 @@ import ServiceCard from "@/components/services/ServiceCard";
 import ClientsCarousel from "@/components/clients/ClientsCarousel";
 import TermServices from "@/components/services/Terms";
 import config from "@/utils/config";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const pageContent: AxiosResponse<StrapiResponseServicePage> = await strapi.get<StrapiResponseServicePage>(
+    "/api/servicios-pagina?populate=imagen",
+  );
+  return {
+    title: "Servicios",
+    description: pageContent.data.data.parrafo_principal,
+    openGraph: {
+      title: "Servicios",
+      description: pageContent.data.data.parrafo_principal,
+      images: [
+        {
+          url: `${config.NEXT_PUBLIC_API_URL}${pageContent.data.data.imagen.url}`,
+          width: 1200,
+          height: 630,
+          alt: "Centro de terapias y acupuntura Tian Yuan",
+        },
+      ],
+    },
+  };
+}
 
 export default async function page() {
   let content: AxiosResponse<StrapiResponseServicios> | null = null;

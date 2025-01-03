@@ -6,6 +6,31 @@ import { notFound } from "next/navigation";
 import BannerPages from "@/components/shared/BannerPages";
 import config from "@/utils/config";
 
+export async function generateMetadata() {
+  const content: AxiosResponse<StrapiResponseNosotros> =
+    await strapi<StrapiResponseNosotros>("/api/nosotro?populate=imagen");
+
+  return {
+    title: "Nosotros",
+    description: content.data.data.descripcion,
+    openGraph: {
+      title: "Nosotros",
+      description: content.data.data.descripcion,
+      images: [
+        {
+          url:
+            typeof content.data.data.imagen.url !== undefined
+              ? `${config.NEXT_PUBLIC_API_URL}${content.data.data.imagen.url}`
+              : "/images/about-us.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Centro de terapias y acupuntura Tian Yuan",
+        },
+      ],
+    },
+  };
+}
+
 export default async function page() {
   const content: AxiosResponse<StrapiResponseNosotros> =
     await strapi<StrapiResponseNosotros>("/api/nosotro?populate=imagen");

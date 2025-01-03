@@ -1,4 +1,5 @@
 import React from "react";
+import { Metadata } from "next";
 import { strapi } from "@/utils/strapi";
 import { AxiosResponse } from "axios";
 import { StrapiResponseServicio } from "@/utils/types";
@@ -6,6 +7,32 @@ import { notFound } from "next/navigation";
 import BannerPages from "@/components/shared/BannerPages";
 import type { ParamSlug } from "@/utils/types";
 import config from "@/utils/config";
+
+export async function generateMetadata({ params }: ParamSlug): Promise<Metadata> {
+  const { slug } = await params;
+  const content: AxiosResponse<StrapiResponseServicio> = await strapi(
+    `/api/servicios?filters[slug][$eq]=${slug}&populate=imagen`,
+  );
+  return {
+    title: `Servicio de ${content.data.data[0].titulo}`,
+    description: content.data.data[0].descripcion,
+    openGraph: {
+      title: `Servicio de ${content.data.data[0].titulo}`,
+      description: content.data.data[0].descripcion,
+      images: [
+        {
+          url:
+            typeof content.data.data[0].imagen?.url !== "undefined"
+              ? `${config.NEXT_PUBLIC_API_URL}${content.data.data[0].imagen?.url}`
+              : "/images/about-us.jpg",
+          width: 1200,
+          height: 630,
+          alt: content.data.data[0].titulo,
+        },
+      ],
+    },
+  };
+}
 
 export default async function page({ params }: ParamSlug) {
   const { slug } = await params;

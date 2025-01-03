@@ -9,9 +9,31 @@ import { strapi } from "@/utils/strapi";
 import { notFound } from "next/navigation";
 import config from "@/utils/config";
 
-export const metadata: Metadata = {
-  title: "Inicio | Centro de terapias y acupuntura Tian Yuan",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const dataHome: AxiosResponse<StrapiResponseHome> = await strapi.get<StrapiResponseHome>(
+    "/api/home?populate=imagen_principal",
+  );
+
+  return {
+    title: "Inicio | Centro de terapias y acupuntura Tian Yuan",
+    description: dataHome.data.data.parrafo_principal,
+    openGraph: {
+      title: "Inicio | Centro de terapias y acupuntura Tian Yuan",
+      description: dataHome.data.data.parrafo_principal,
+      images: [
+        {
+          url:
+            typeof dataHome.data.data?.imagen_principal?.url !== "undefined"
+              ? `${config.NEXT_PUBLIC_API_URL}${dataHome.data.data?.imagen_principal?.url}`
+              : "/images/health.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Centro de terapias y acupuntura Tian Yuan",
+        },
+      ],
+    },
+  };
+}
 
 export default async function Home() {
   let dataHome: AxiosResponse<StrapiResponseHome> | null = null;
