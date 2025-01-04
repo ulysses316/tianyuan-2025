@@ -8,6 +8,7 @@ import Whatsapp from "../svg/Whatsapp";
 import Facebook from "../svg/Facebook";
 import Instagram from "../svg/Instagram";
 import Mail from "../svg/Mail";
+import Link from "next/link";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -55,7 +56,12 @@ export default function Footer() {
       </div>
       <hr className="mb-6 border-ty-0/30" />
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
-        <p>{year} Centro de Terapias y Acupuntura Tian Yuan</p>
+        <div className="text-center sm:text-left">
+          <p>{year} Centro de Terapias y Acupuntura Tian Yuan</p>
+          <Link className="underline" href="/terminos-y-condiciones">
+            Terminos y condiciones
+          </Link>
+        </div>
         <div className="flex gap-4">
           <a
             href="https://wa.me/5531202502?text=%C2%A1Hola%21%20Me%20interesa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de..."

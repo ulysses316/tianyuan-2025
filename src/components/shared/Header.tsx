@@ -9,13 +9,22 @@ import { AlignJustify, X } from "lucide-react";
 import { createPortal } from "react-dom";
 
 export default function Header() {
+  const pathname = usePathname();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [isClient, setIsClient] = useState<boolean>(false);
-  const pathname = usePathname();
+  const [useHeaderWhite, setUseHeaderWhite] = useState<boolean>(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (pathname === "/" || pathname === "/terminos-y-condiciones") {
+      setUseHeaderWhite(false);
+    } else {
+      setUseHeaderWhite(true);
+    }
+  }, [pathname]);
 
   const handdleCloseMobile = () => {
     setTimeout(() => {
@@ -26,9 +35,9 @@ export default function Header() {
   return (
     <>
       <header
-        className={`relative flex items-center justify-center px-16 pb-4 pt-6 md:justify-around ${pathname !== "/" && "text-white"}`}
+        className={`relative flex items-center justify-center px-16 pb-4 pt-6 md:justify-around ${useHeaderWhite && "text-white"}`}
       >
-        <Link className={`${pathname !== "/" && "rounded-full bg-white"}`} href="/">
+        <Link className={`${useHeaderWhite && "rounded-full bg-white"}`} href="/">
           <Image src="/logo.webp" alt="logo" width={66} height={50} />
         </Link>
         <div className="hidden items-center justify-center gap-6 md:flex">
@@ -46,7 +55,7 @@ export default function Header() {
           </HeaderLink>
         </div>
         <div className="hidden md:flex">
-          {pathname === "/" ? (
+          {useHeaderWhite ? (
             <Button href="#">Agendar cita</Button>
           ) : (
             <Button variant="white" href="#">

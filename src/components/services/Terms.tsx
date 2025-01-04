@@ -1,10 +1,14 @@
 import React from "react";
 import type { TermsAndConditionsProps } from "@/utils/types";
 
-export default function TermServices({ terms }: TermsAndConditionsProps) {
+export default function TermServices({ terms, title, titleId }: TermsAndConditionsProps) {
   return (
     <section className="bg-ty-0 px-4 py-20 text-ty-1000 md:px-20 lg:px-28 xl:px-64">
-      <h2 className="pb-6 text-center font-cormorant text-4xl font-bold">Términos y condiciones</h2>
+      {title && (
+        <h2 id={titleId} className="pb-6 text-center font-cormorant text-4xl font-bold">
+          {title}
+        </h2>
+      )}
       {terms.map((term) => (
         <div
           key={term.numero}

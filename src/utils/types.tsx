@@ -47,6 +47,8 @@ export type CommentsCarouselProps = {
 };
 
 export type TermsAndConditionsProps = {
+  title?: string;
+  titleId?: string;
   terms: Array<{
     titulo: string;
     termino: string;
