@@ -34,6 +34,29 @@ export async function generateMetadata() {
 export default async function page() {
   const content: AxiosResponse<StrapiResponseNosotros> =
     await strapi<StrapiResponseNosotros>("/api/nosotro?populate=imagen");
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Centro de Terapias y Acupuntura Tian Yuan",
+      url: "https://www.terapias-tianyuan.com",
+      image: `${config.NEXT_PUBLIC_API_URL}${content.data.data.imagen.url}`,
+      description:
+        "Somos un centro especializado en terapias alternativas y acupuntura, dedicado al bienestar integral.",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "5 de Mayo 25",
+        addressLocality: "San Cristóbal Centro",
+        postalCode: "55000",
+        addressRegion: "México",
+        addressCountry: "MX",
+        telephone: "5531202502",
+      },
+    },
+  };
+
   if (content.status !== 200) return notFound();
 
   return (
@@ -53,6 +76,7 @@ export default async function page() {
           dangerouslySetInnerHTML={{ __html: content.data.data.contenido }}
         />
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );
 }

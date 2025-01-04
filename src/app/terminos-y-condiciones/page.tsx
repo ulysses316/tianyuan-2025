@@ -20,6 +20,14 @@ export default async function page() {
   if (termsDiplomadosData.status === "fulfilled") termDiplomados = termsDiplomadosData.value;
   if (termsSesionesData.status === "fulfilled") termSesiones = termsSesionesData.value;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Términos y Condiciones",
+    url: "https://tianyuan.com/terminos-y-condiciones",
+    about: "Términos y condiciones del uso del sitio web y servicios de Centro de Terapias y Acupuntura Tian Yuan.",
+  };
+
   if (!termServicios && !termDiplomados && !termSesiones) return notFound();
 
   return (
@@ -45,6 +53,7 @@ export default async function page() {
           terms={termSesiones.data.data}
         />
       )}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );
 }

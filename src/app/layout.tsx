@@ -28,6 +28,7 @@ export const metadata: Metadata = {
       template: "%s | Centro de terapias y acupuntura Tian Yuan",
       default: "Centro de terapias y acupuntura Tian Yuan",
     },
+    siteName: "Centro de terapias y acupuntura Tian Yuan",
     type: "website",
     locale: "es_MX",
     url: "https://www.terapias-tianyuan.com",
@@ -62,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={`${karla.variable} ${cormorant.variable} font-karla antialiased`}>
         <Header />
         <main>{children}</main>

@@ -40,6 +40,38 @@ export default async function page({ params }: ParamSlug) {
   const content: AxiosResponse<StrapiResponseServicio> = await strapi(
     `/api/servicios?filters[slug][$eq]=${slug}&populate=imagen`,
   );
+
+  const jsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "Service",
+    serviceType: content.data.data[0].titulo,
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Centro de Terapias y Acupuntura Tian Yuan",
+      image: `${config.NEXT_PUBLIC_API_URL}${content.data.data[0].imagen.url}`,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "5 de Mayo 25",
+        addressLocality: "San Cristóbal Centro",
+        postalCode: "55000",
+        addressRegion: "México",
+        addressCountry: "MX",
+        telephone: "5531202502",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 19.601640178869076,
+        longitude: -99.04384808926673,
+      },
+      url: `https://www.terapias-tianyuan.com/servicios/${slug}`,
+      priceRange: "$",
+      areaServed: {
+        "@type": "Place",
+        name: "Ecatepec de Morelos",
+      },
+    },
+  };
+
   if (content.status !== 200) return notFound();
 
   return (
@@ -59,6 +91,7 @@ export default async function page({ params }: ParamSlug) {
           dangerouslySetInnerHTML={{ __html: content.data.data[0].contenido }}
         />
       </section>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );
 }

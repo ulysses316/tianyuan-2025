@@ -55,6 +55,46 @@ export default async function page() {
   if (commentsResponse.status === "fulfilled") comments = commentsResponse.value;
   if (servicePageResponse.status === "fulfilled") pageContent = servicePageResponse.value;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Servicios en Centro de Terapias y Acupuntura Tian Yuan",
+    itemListElement: content?.data.data.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Service",
+        serviceType: service.titulo,
+        name: `Servicio de ${service.titulo}`,
+        provider: {
+          "@type": "LocalBusiness",
+          name: "Centro de Terapias y Acupuntura Tian Yuan",
+          image: `${config.NEXT_PUBLIC_API_URL}${service.imagen.url}`,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "5 de Mayo 25",
+            addressLocality: "San Cristóbal Centro",
+            postalCode: "55000",
+            addressRegion: "México",
+            addressCountry: "MX",
+            telephone: "5531202502",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 19.601640178869076,
+            longitude: -99.04384808926673,
+          },
+          url: `https://www.terapias-tianyuan.com/servicios/${service.slug}`,
+          priceRange: "$",
+          areaServed: {
+            "@type": "Place",
+            name: "Ecatepec de Morelos",
+          },
+        },
+      },
+    })),
+  };
+
   if (!content && !terms && !comments && !servicePageResponse) return notFound();
 
   return (
@@ -91,6 +131,8 @@ export default async function page() {
       </section>
 
       {terms !== null && <TermServices terms={terms.data.data} />}
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );
 }

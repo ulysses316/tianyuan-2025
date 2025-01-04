@@ -47,6 +47,58 @@ export default async function Home() {
   if (dataHomeResponse.status === "fulfilled") dataHome = dataHomeResponse.value;
   if (commentsResponse.status === "fulfilled") comments = commentsResponse.value;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Centro de Terapias y Acupuntura Tian Yuan",
+    url: "https://www.terapias-tianyuan.com",
+    publisher: {
+      "@type": "Organization",
+      name: "Centro de Terapias y Acupuntura Tian Yuan",
+      url: "https://www.terapias-tianyuan.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "5 de Mayo 25",
+        addressLocality: "San Cristóbal Centro",
+        postalCode: "55000",
+        addressRegion: "México",
+        addressCountry: "MX",
+        telephone: "5531202502",
+      },
+    },
+  };
+
+  const jsonLdPages = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Nosotros",
+        item: "https://terapias-tianyuan.com/nosotros",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Servicios",
+        item: "https://terapias-tianyuan.com/servicios",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Diplomados",
+        item: "https://terapias-tianyuan.com/diplomados",
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Terminos y condiciones",
+        item: "https://terapias-tianyuan.com/terminos-y-condiciones",
+      },
+    ],
+  };
+
   if (!dataHome && !comments) return notFound();
 
   return (
@@ -124,6 +176,9 @@ export default async function Home() {
           </p>
           {comments !== null && <ClientsCarousel comments={comments.data.data} />}
         </section>
+
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPages) }} />
       </>
     )
   );

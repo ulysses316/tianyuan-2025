@@ -55,6 +55,57 @@ export default async function page() {
   if (commentsResponse.status === "fulfilled") comments = commentsResponse.value;
   if (diplomadosPageResponse.status === "fulfilled") pageContent = diplomadosPageResponse.value;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Diplomados en Centro de Terapias y Acupuntura Tian Yuan",
+    itemListElement: diplomados?.data.data.map((diplomado) => {
+      return {
+        "@type": "Course",
+        name: `Diplomado en ${diplomado.titulo}`,
+        description: diplomado.descripcion,
+        availableLanguage: ["es-MX"],
+        provider: {
+          "@type": "Organization",
+          name: "Centro de Terapias y Acupuntura Tian Yuan",
+          url: `https://www.terapias-tianyuan.com/${diplomado.slug}`,
+          image: diplomado.imagen.url,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "5 de Mayo 25",
+            addressLocality: "San Cristóbal Centro",
+            postalCode: "55000",
+            addressRegion: "México",
+            addressCountry: "MX",
+            telephone: "5531202502",
+          },
+        },
+        offers: [
+          {
+            "@type": "Offer",
+            category: "Paid",
+            priceCurrency: "MXN",
+          },
+        ],
+        hasCourseInstance: {
+          "@type": "CourseInstance",
+          courseMode: ["Online", "Onsite"],
+          courseSchedule: {
+            "@type": "Schedule",
+            duration: "PT3H",
+            repeatCount: 52,
+            repeatFrequency: "Weekly",
+          },
+        },
+        instructor: {
+          "@type": "Person",
+          name: "LAHR (Licenciada en Acupuntura Humana Rehabilitatoria) Brisa Arely Oviedo Yañez",
+          description: "Especialista en acupuntura y terapias complementarias.",
+        },
+      };
+    }),
+  };
+
   if (!diplomados && !terms && !comments && !pageContent) return notFound();
 
   return (
@@ -91,6 +142,8 @@ export default async function page() {
       </section>
 
       {terms !== null && <TermServices terms={terms.data.data} />}
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
   );
 }
