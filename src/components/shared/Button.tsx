@@ -8,12 +8,13 @@ const Button = ({
   type,
   className,
   children,
+  target,
   disabled = false,
   variant = "primary",
 }: ButtonProps) => {
   const styles = {
     primary:
-      "bg-sky-500 py-1 px-12 min-h-12 rounded-sm hover:bg-transparent rounded-lg font-bold border border-sky-500 text-white hover:text-sky-500 transition-colors duration-300",
+      "hover:bg-sky-500 py-1 px-12 min-h-12 rounded-sm bg-transparent rounded-lg font-bold border-2 border-sky-500 hover:text-white text-sky-600 transition-colors duration-300",
     black:
       "hover:bg-ty-0 py-1 px-12 min-h-12 rounded-sm bg-transparent rounded-lg font-bold border border-ty-0 text-ty-0 hover:text-white transition-colors duration-300",
     white:
@@ -22,7 +23,7 @@ const Button = ({
 
   if (href) {
     return (
-      <Link className={`${styles[variant]} ${className} text-nowrap py-[1em]`} href={href}>
+      <Link target={target} className={`${styles[variant]} ${className} text-nowrap py-[1em]`} href={href}>
         {children}
       </Link>
     );

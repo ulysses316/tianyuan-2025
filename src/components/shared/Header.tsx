@@ -55,10 +55,12 @@ export default function Header() {
           </HeaderLink>
         </div>
         <div className="hidden md:flex">
-          {useHeaderWhite ? (
-            <Button href="#">Agendar cita</Button>
+          {!useHeaderWhite ? (
+            <Button target="_blank" href="https://api.whatsapp.com/send/?phone=5531202502">
+              Agendar cita
+            </Button>
           ) : (
-            <Button variant="white" href="#">
+            <Button target="_blank" href="https://api.whatsapp.com/send/?phone=5531202502" variant="white">
               Agendar cita
             </Button>
           )}

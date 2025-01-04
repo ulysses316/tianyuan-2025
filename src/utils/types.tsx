@@ -9,6 +9,7 @@ export type ButtonProps = {
   children: ReactNode;
   disabled?: boolean;
   variant?: "primary" | "black" | "white";
+  target?: string;
 };
 
 export type Layout = {

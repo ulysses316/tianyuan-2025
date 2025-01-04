@@ -112,7 +112,7 @@ export default async function Home() {
             </h1>
             <p className="text-lg lg:text-xl">{dataHome.data.data.parrafo_principal}</p>
             <div className="mt-7 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-center lg:gap-0">
-              <Button href="#" className="">
+              <Button target="_blank" href="https://api.whatsapp.com/send/?phone=5531202502" className="">
                 Agenda una cita
               </Button>
               <LinkWArrow href="/servicios">Explora nuestos servicios</LinkWArrow>

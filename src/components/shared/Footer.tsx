@@ -48,7 +48,7 @@ export default function Footer() {
         <div className="md:justify-self-end">
           <h3 className="text-2xl">¿Listo para agendar?</h3>
           <div className="mt-8">
-            <Button variant="white" href="/contacto">
+            <Button target="_blank" variant="white" href="https://api.whatsapp.com/send/?phone=5531202502">
               Contáctanos
             </Button>
           </div>
@@ -63,11 +63,7 @@ export default function Footer() {
           </Link>
         </div>
         <div className="flex gap-4">
-          <a
-            href="https://wa.me/5531202502?text=%C2%A1Hola%21%20Me%20interesa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20servicio%20de..."
-            target="_blank"
-            aria-label="Whatsapp"
-          >
+          <a href="https://api.whatsapp.com/send/?phone=5531202502" target="_blank" aria-label="Whatsapp">
             <Whatsapp className="w-6" />
           </a>
           <a
