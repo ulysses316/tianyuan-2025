@@ -15,6 +15,8 @@ import ClientsCarousel from "@/components/clients/ClientsCarousel";
 import TermServices from "@/components/services/Terms";
 import config from "@/utils/config";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const pageContent: AxiosResponse<StrapiResponseDiplomadosPage> = await strapi.get<StrapiResponseDiplomadosPage>(
     "/api/dilpomados-pagina?populate=imagen",

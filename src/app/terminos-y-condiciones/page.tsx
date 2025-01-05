@@ -5,6 +5,8 @@ import { strapi } from "@/utils/strapi";
 import { AxiosResponse } from "axios";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default async function page() {
   let termServicios: AxiosResponse<StrapiResponseTerms> | null = null;
   let termDiplomados: AxiosResponse<StrapiResponseTerms> | null = null;

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import { Karla, Cormorant } from "next/font/google";
@@ -64,6 +65,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <GoogleTagManager gtmId="GTM-NF52VJCT" />
       <body className={`${karla.variable} ${cormorant.variable} font-karla antialiased`}>
         <Header />
         <main>{children}</main>
