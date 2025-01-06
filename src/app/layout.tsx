@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   publisher: "Centro de terapias y acupuntura Tian Yuan",
   metadataBase: new URL("https://www.terapias-tianyuan.com"),
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
   category: "Salud, Acupuntura, Terapias, Bienestar, Medicina tradicional china, Medicina alternativa, Masoterapia",
 };
