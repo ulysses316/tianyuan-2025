@@ -115,7 +115,7 @@ export default async function page() {
           {content !== null &&
             content?.data.data.map((service) => (
               <ServiceCard
-                key={service.id}
+                key={service.documentId}
                 title={service.titulo}
                 description={service.descripcion}
                 href={service.slug}
