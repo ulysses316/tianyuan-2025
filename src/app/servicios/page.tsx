@@ -57,6 +57,8 @@ export default async function page() {
   if (commentsResponse.status === "fulfilled") comments = commentsResponse.value;
   if (servicePageResponse.status === "fulfilled") pageContent = servicePageResponse.value;
 
+  console.log(content?.data.data[0].imagen.formats);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -120,8 +122,8 @@ export default async function page() {
                 description={service.descripcion}
                 href={service.slug}
                 src={
-                  typeof service.imagen?.formats.small.url !== "undefined"
-                    ? `${config.NEXT_PUBLIC_API_URL}${service.imagen?.formats.small.url}`
+                  typeof service.imagen?.url !== "undefined"
+                    ? `${config.NEXT_PUBLIC_API_URL}${service.imagen?.url}`
                     : "/images/about-us.jpg"
                 }
               />

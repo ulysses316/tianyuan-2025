@@ -131,8 +131,8 @@ export default async function page() {
                 description={diplomado.descripcion}
                 href={diplomado.slug}
                 src={
-                  typeof diplomado.imagen?.formats.small.url !== "undefined"
-                    ? `${config.NEXT_PUBLIC_API_URL}${diplomado.imagen?.formats.small.url}`
+                  typeof diplomado.imagen?.url !== "undefined"
+                    ? `${config.NEXT_PUBLIC_API_URL}${diplomado.imagen?.url}`
                     : "/images/about-us.jpg"
                 }
               />
