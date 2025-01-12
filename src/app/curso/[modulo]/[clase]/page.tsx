@@ -8,6 +8,7 @@ import axios from "axios";
 import type { StrapiUserApi, S3SignedUrlVideo } from "@/utils/types";
 import type { AxiosResponse } from "axios";
 import env from "@/utils/config";
+import Video from "@/components/couses/Video";
 
 export const dynamic = "force-dynamic";
 
@@ -31,8 +32,8 @@ export default async function page({ params }: VideoPageParam) {
   });
 
   return (
-    <div>
-      <video src={videoSrc.data.data.url} controls></video>
-    </div>
+    <section className="my-12 flex items-center justify-center px-4 md:px-12">
+      <Video className="aspect-video w-full md:w-3/4" src={videoSrc.data.data.url} />
+    </section>
   );
 }

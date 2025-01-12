@@ -12,14 +12,19 @@ export default function Header() {
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [isClient, setIsClient] = useState<boolean>(false);
-  const [useHeaderWhite, setUseHeaderWhite] = useState<boolean>(false);
+  const [useHeaderWhite, setUseHeaderWhite] = useState<boolean>(true);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
   useEffect(() => {
-    if (pathname === "/" || pathname === "/terminos-y-condiciones") {
+    if (
+      pathname === "/" ||
+      pathname === "/terminos-y-condiciones" ||
+      pathname === "/login" ||
+      pathname.includes("/curso")
+    ) {
       setUseHeaderWhite(false);
     } else {
       setUseHeaderWhite(true);
