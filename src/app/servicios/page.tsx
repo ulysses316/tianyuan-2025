@@ -57,8 +57,6 @@ export default async function page() {
   if (commentsResponse.status === "fulfilled") comments = commentsResponse.value;
   if (servicePageResponse.status === "fulfilled") pageContent = servicePageResponse.value;
 
-  console.log(content?.data.data[0].imagen.formats);
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
