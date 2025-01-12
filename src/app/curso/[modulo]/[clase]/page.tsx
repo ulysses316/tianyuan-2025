@@ -4,8 +4,10 @@ import type { VideoPageParam } from "@/utils/types";
 import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
 import { strapi } from "@/utils/strapi";
-import type { StrapiUserApi } from "@/utils/types";
+import axios from "axios";
+import type { StrapiUserApi, S3SignedUrlVideo } from "@/utils/types";
 import type { AxiosResponse } from "axios";
+import env from "@/utils/config";
 
 export const dynamic = "force-dynamic";
 
@@ -24,5 +26,13 @@ export default async function page({ params }: VideoPageParam) {
 
   if (!user || user.modulo.toString() !== modulo.replace("modulo-", "")) return redirect("/curso");
 
-  return <div>page</div>;
+  const videoSrc: AxiosResponse<S3SignedUrlVideo> = await axios.post(`${env.NEXT_PUBLIC_URL}/api/presignedurl`, {
+    file_name: `modulo_${modulo.replace("modulo-", "")}/${clase.replace("clase-", "")}.mp4`,
+  });
+
+  return (
+    <div>
+      <video src={videoSrc.data.data.url} controls></video>
+    </div>
+  );
 }

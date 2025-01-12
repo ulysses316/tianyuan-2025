@@ -233,3 +233,10 @@ export type StrapiUserAuth = {
   jwt: string;
   user: StrapiUserApi;
 };
+
+export type S3SignedUrlVideo = {
+  ok: boolean;
+  data: {
+    url: string;
+  };
+};
