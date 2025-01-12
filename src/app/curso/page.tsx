@@ -6,8 +6,17 @@ import { getServerSession } from "next-auth";
 import { strapi } from "@/utils/strapi";
 import type { ModulosResponse, StrapiUserApi } from "@/utils/types";
 import type { AxiosResponse } from "axios";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Cursos",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function page() {
   const session = await getServerSession(authOptions);
