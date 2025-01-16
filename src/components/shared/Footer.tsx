@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Image from "next/image";
 import HeaderLink from "./HeaderLink";
 import { usePathname } from "next/navigation";
@@ -9,10 +8,13 @@ import Facebook from "../svg/Facebook";
 import Instagram from "../svg/Instagram";
 import Mail from "../svg/Mail";
 import Link from "next/link";
+import type { Session } from "next-auth";
+import { signOut } from "next-auth/react";
 
-export default function Footer() {
+export default function Footer({ session }: { session: Session | null }) {
   const pathname = usePathname();
   const year = new Date().getFullYear();
+
   return (
     <footer className="bg-pink-100 px-4 pb-16 pt-16 md:px-20 lg:px-40">
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
@@ -30,6 +32,18 @@ export default function Footer() {
           <HeaderLink href="/diplomados" active={pathname === "/diplomados"}>
             Diplomados
           </HeaderLink>
+          {session && (
+            <HeaderLink href="/curso" active={pathname === "/curso"}>
+              Clases online
+            </HeaderLink>
+          )}
+          {session ? (
+            <button onClick={() => signOut()}>Cerrar sesión</button>
+          ) : (
+            <HeaderLink href="/login" active={pathname === "/login"}>
+              Iniciar sesión
+            </HeaderLink>
+          )}
         </div>
       </div>
       <hr className="mt-6 border-ty-0/30" />

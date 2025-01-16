@@ -3,6 +3,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import Header from "@/components/shared/Header";
 import Footer from "@/components/shared/Footer";
 import { Karla, Cormorant } from "next/font/google";
+import { getServerSession } from "next-auth";
 import "./globals.css";
 
 const karla = Karla({
@@ -58,18 +59,19 @@ export const metadata: Metadata = {
   category: "Salud, Acupuntura, Terapias, Bienestar, Medicina tradicional china, Medicina alternativa, Masoterapia",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession();
   return (
     <html lang="es">
       <GoogleTagManager gtmId="GTM-NF52VJCT" />
       <body className={`${karla.variable} ${cormorant.variable} font-karla antialiased`}>
-        <Header />
+        <Header session={session} />
         <main>{children}</main>
-        <Footer />
+        <Footer session={session} />
       </body>
     </html>
   );

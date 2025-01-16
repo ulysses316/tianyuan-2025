@@ -1,12 +1,9 @@
 "use client";
 import { FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Button from "@/components/shared/Button";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export default function Page() {
-  const router: AppRouterInstance = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
@@ -22,18 +19,11 @@ export default function Page() {
       return null;
     }
 
-    const response = await signIn("credentials", {
+    await signIn("credentials", {
       email: email,
       password: password,
-      redirect: false,
+      redirect: true,
     });
-
-    if (response?.status !== 200) {
-      setError("Hubo un problema al iniciar sesion.");
-      return null;
-    }
-
-    router.push("/curso");
   };
 
   return (

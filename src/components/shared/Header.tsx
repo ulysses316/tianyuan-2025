@@ -7,8 +7,10 @@ import { usePathname } from "next/navigation";
 import Button from "./Button";
 import { AlignJustify, X } from "lucide-react";
 import { createPortal } from "react-dom";
+import type { Session } from "next-auth";
+import { signOut } from "next-auth/react";
 
-export default function Header() {
+export default function Header({ session }: { session: Session | null }) {
   const pathname = usePathname();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [isClient, setIsClient] = useState<boolean>(false);
@@ -45,7 +47,7 @@ export default function Header() {
         <Link className={`${useHeaderWhite && "rounded-full bg-white"}`} href="/">
           <Image src="/logo.webp" alt="logo" width={66} height={50} />
         </Link>
-        <div className="hidden items-center justify-center gap-6 md:flex">
+        <div className="hidden flex-wrap items-center justify-center gap-6 md:flex">
           <HeaderLink className="text-lg" href="/" active={pathname === "/"}>
             Inicio
           </HeaderLink>
@@ -58,6 +60,20 @@ export default function Header() {
           <HeaderLink className="text-lg" href="/diplomados" active={pathname === "/diplomados"}>
             Diplomados
           </HeaderLink>
+          {session && (
+            <HeaderLink className="text-lg" href="/curso" active={pathname === "/curso"}>
+              Clases online
+            </HeaderLink>
+          )}
+          {session ? (
+            <button className="text-lg" onClick={() => signOut()}>
+              Cerrar sesión
+            </button>
+          ) : (
+            <HeaderLink className="text-lg" href="/login" active={pathname === "/login"}>
+              Iniciar sesión
+            </HeaderLink>
+          )}
         </div>
         <div className="hidden md:flex">
           {!useHeaderWhite ? (
@@ -98,6 +114,25 @@ export default function Header() {
               <HeaderLink onClick={handdleCloseMobile} href="/diplomados" active={pathname === "/diplomados"}>
                 Diplomados
               </HeaderLink>
+              {session && (
+                <HeaderLink onClick={handdleCloseMobile} href="/curso" active={pathname === "/curso"}>
+                  Clases online
+                </HeaderLink>
+              )}
+              {session ? (
+                <button
+                  onClick={() => {
+                    handdleCloseMobile();
+                    signOut();
+                  }}
+                >
+                  Cerrar sesión
+                </button>
+              ) : (
+                <HeaderLink onClick={handdleCloseMobile} href="/login" active={pathname === "/login"}>
+                  Iniciar sesión
+                </HeaderLink>
+              )}
               <Button href="#">Agendar cita</Button>
             </div>
             <div>
