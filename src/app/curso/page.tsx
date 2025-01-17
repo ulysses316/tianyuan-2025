@@ -51,7 +51,7 @@ export default async function page() {
             <CourseAccordion
               key={modulo.documentId}
               number_module={numeroDeModulo}
-              lock={numeroDeModulo !== responseUser?.data[0].modulo}
+              lock={numeroDeModulo === responseUser?.data[0].modulo || numeroDeModulo === 2}
             >
               <div className="flex flex-col gap-2">
                 {modulo.modulo[0]?.video?.map((video) => (

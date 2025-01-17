@@ -12,9 +12,9 @@ export default function CourseAccordion({ number_module, children, lock }: Cours
     <details className="group relative cursor-pointer rounded-lg border-2 border-sky-300 px-4 py-2 text-sm">
       <summary className="font-railey flex items-center justify-between text-2xl text-black">
         Modulo {number_module}
-        {lock && <Lock />}
+        {!lock && <Lock />}
       </summary>
-      {!lock && <div className="py-2">{children}</div>}
+      {lock && <div className="py-2">{children}</div>}
     </details>
   );
 }
