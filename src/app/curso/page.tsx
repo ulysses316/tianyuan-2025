@@ -41,17 +41,19 @@ export default async function page() {
 
   if (!response && !responseUser) return null;
 
+  const userModules = responseUser?.data[0].modulo;
+
   return (
     <section className="flex min-h-[32dvh] flex-col gap-4 px-4 py-12 md:px-12">
       {response &&
         response.data.data.map((modulo) => {
-          const numeroDeModulo = modulo.modulo[0]?.numero_de_modulo; // Extraemos el numero_de_modulo de la primera iteración
+          const numeroDeModulo = modulo.modulo[0]?.numero_de_modulo;
 
           return (
             <CourseAccordion
               key={modulo.documentId}
               number_module={numeroDeModulo}
-              lock={numeroDeModulo === responseUser?.data[0].modulo || numeroDeModulo === 2}
+              lock={userModules?.includes(String(numeroDeModulo))}
             >
               <div className="flex flex-col gap-2">
                 {modulo.modulo[0]?.video?.map((video) => (

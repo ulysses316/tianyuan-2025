@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Brisa Arely Oviedo Yañez", url: "https://www.terapias-tianyuan.com" }],
   creator: "Brisa Arely Oviedo Yañez",
   publisher: "Centro de terapias y acupuntura Tian Yuan",
-  metadataBase: new URL("https://www.terapias-tianyuan.com"),
+  metadataBase: new URL("https://admin.terapias-tianyuan.com"),
   robots: {
     index: true,
     follow: true,

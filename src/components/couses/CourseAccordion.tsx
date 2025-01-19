@@ -4,7 +4,7 @@ import { Lock } from "lucide-react";
 type CourseAccordion = {
   number_module: number;
   children: ReactNode;
-  lock: boolean;
+  lock: boolean | undefined;
 };
 
 export default function CourseAccordion({ number_module, children, lock }: CourseAccordion) {
