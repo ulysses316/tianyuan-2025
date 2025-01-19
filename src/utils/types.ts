@@ -226,7 +226,7 @@ export type StrapiUserApi = {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  modulo: string[];
+  modulo: string;
 };
 
 export type StrapiUserAuth = {

@@ -34,10 +34,12 @@ export default async function page({ params }: VideoPageParam) {
 
   const user = responseUser.data[0];
 
-  if (!user || !user.modulo.includes(modulo.replace("modulo-", ""))) return redirect("/curso");
+  const userModules = responseUser?.data[0].modulo.split(",").map((modulo) => modulo.trim());
+
+  if (!user || userModules.indexOf(String(modulo))) return redirect("/curso");
 
   const videoSrc: AxiosResponse<S3SignedUrlVideo> = await axios.post(`${env.NEXT_PUBLIC_URL}/api/presignedurl`, {
-    file_name: `modulo_${modulo.replace("modulo-", "")}/${clase.replace("clase-", "")}.mp4`,
+    file_name: `modulo_${modulo}/${clase}.mp4`,
   });
 
   return (

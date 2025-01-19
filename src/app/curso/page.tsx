@@ -7,6 +7,7 @@ import { strapi } from "@/utils/strapi";
 import type { ModulosResponse, StrapiUserApi } from "@/utils/types";
 import type { AxiosResponse } from "axios";
 import type { Metadata } from "next";
+import slugifyNameVideo from "@/utils/slugifyTitleVideos";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +30,7 @@ export default async function page() {
       params: {
         populate: {
           modulo: {
-            populate: "*",
+            populate: "video",
           },
         },
       },
@@ -41,7 +42,7 @@ export default async function page() {
 
   if (!response && !responseUser) return null;
 
-  const userModules = responseUser?.data[0].modulo;
+  const userModules = responseUser?.data[0].modulo.split(",").map((modulo) => modulo.trim());
 
   return (
     <section className="flex min-h-[32dvh] flex-col gap-4 px-4 py-12 md:px-12">
@@ -53,14 +54,11 @@ export default async function page() {
             <CourseAccordion
               key={modulo.documentId}
               number_module={numeroDeModulo}
-              lock={userModules?.includes(String(numeroDeModulo))}
+              lock={userModules?.indexOf(String(numeroDeModulo)) !== -1}
             >
               <div className="flex flex-col gap-2">
                 {modulo.modulo[0]?.video?.map((video) => (
-                  <Link
-                    key={video.numero_de_clase}
-                    href={`/curso/modulo-${numeroDeModulo}/clase-${video.numero_de_clase}`}
-                  >
+                  <Link key={video.numero_de_clase} href={`/curso/${numeroDeModulo}/${slugifyNameVideo(video.titulo)}`}>
                     {video.numero_de_clase} - {video.titulo}
                   </Link>
                 ))}
