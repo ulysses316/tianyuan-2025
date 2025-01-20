@@ -40,14 +40,20 @@ export default async function page() {
   if (requestUser.status === "fulfilled") responseUser = requestUser.value;
   if (request.status === "fulfilled") response = request.value;
 
-  if (!response && !responseUser) return null;
+  if (!response || !responseUser) return null;
+
+  const responseSorted = response.data.data.sort((a, b) => {
+    const moduloA = a.modulo[0]?.numero_de_modulo || 0;
+    const moduloB = b.modulo[0]?.numero_de_modulo || 0;
+    return moduloA - moduloB;
+  });
 
   const userModules = responseUser?.data[0].modulo.split(",").map((modulo) => modulo.trim());
 
   return (
     <section className="flex min-h-[32dvh] flex-col gap-4 px-4 py-12 md:px-12">
-      {response &&
-        response.data.data.map((modulo) => {
+      {responseSorted &&
+        responseSorted.map((modulo) => {
           const numeroDeModulo = modulo.modulo[0]?.numero_de_modulo;
 
           return (
