@@ -24,7 +24,6 @@ export const metadata: Metadata = {
 export default async function page({ params }: VideoPageParam) {
   const { modulo, clase } = await params;
   const session = await getServerSession(authOptions);
-  console.log(clase);
 
   if (!session?.documentId) return redirect("/curso");
 
@@ -36,7 +35,7 @@ export default async function page({ params }: VideoPageParam) {
 
   const userModules = responseUser?.data[0].modulo.split(",").map((modulo) => modulo.trim());
 
-  if (!user || userModules.indexOf(String(modulo))) return redirect("/curso");
+  if (!user || userModules.indexOf(String(modulo)) === -1) return redirect("/curso");
 
   const videoSrc: AxiosResponse<S3SignedUrlVideo> = await axios.post(`${env.NEXT_PUBLIC_URL}/api/presignedurl`, {
     file_name: `modulo_${modulo}/${clase}.mp4`,
