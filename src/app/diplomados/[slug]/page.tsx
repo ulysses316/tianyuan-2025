@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import BannerPages from "@/components/shared/BannerPages";
 import type { ParamSlug } from "@/utils/types";
 import config from "@/utils/config";
+import "@/app/styles/ck-editor.css";
 
 export async function generateMetadata({ params }: ParamSlug): Promise<Metadata> {
   const { slug } = await params;
@@ -103,7 +104,7 @@ export default async function page({ params }: ParamSlug) {
       />
       <section className="mb-12 flex items-center justify-center">
         <div
-          className="prose prose-lg px-4 prose-headings:font-cormorant prose-a:break-all prose-figure:flex prose-figure:w-full prose-figure:justify-center prose-figure:rounded-lg prose-img:w-full prose-img:rounded-lg prose-img:sm:w-1/2 md:px-0"
+          className="ck-content prose prose-lg px-4 prose-headings:font-cormorant prose-a:break-all prose-figure:rounded-lg prose-img:rounded-lg md:px-0"
           dangerouslySetInnerHTML={{ __html: content.data.data[0].contenido }}
         />
       </section>

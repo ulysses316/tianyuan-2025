@@ -111,7 +111,7 @@ export default async function page() {
         }
       />
       <section className="mb-12 px-4 md:px-20 lg:px-28">
-        <div className="grid grid-cols-1 gap-x-6 gap-y-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(3,370px)]">
+        <div className="grid grid-cols-1 justify-center gap-x-6 gap-y-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(3,370px)]">
           {content !== null &&
             content?.data.data.map((service) => (
               <ServiceCard

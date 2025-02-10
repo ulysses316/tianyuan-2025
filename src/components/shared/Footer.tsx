@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Button from "./Button";
 import Whatsapp from "../svg/Whatsapp";
 import Facebook from "../svg/Facebook";
-import Instagram from "../svg/Instagram";
+import Tiktok from "../svg/Tiktok";
 import Mail from "../svg/Mail";
 import Link from "next/link";
 import type { Session } from "next-auth";
@@ -55,8 +55,8 @@ export default function Footer({ session }: { session: Session | null }) {
           <a className="text-lg underline" target="_blank" href="tel:5531202502">
             5531202502
           </a>
-          <a className="text-lg underline" target="_blank" href="mailto:cecti_tianyuan@gmail.com">
-            cecti_tianyuan@gmail.com
+          <a className="text-lg underline" target="_blank" href="mailto:tianyuancecti@gmail.com">
+            tianyuancecti@gmail.com
           </a>
         </div>
         <div className="md:justify-self-end">
@@ -87,10 +87,10 @@ export default function Footer({ session }: { session: Session | null }) {
           >
             <Facebook className="w-6" />
           </a>
-          <a href="https://www.instagram.com/acu_arelyanez/" target="_blank" aria-label="Instagram">
-            <Instagram className="w-6" />
+          <a href="https://www.tiktok.com/@acutianyuan" target="_blank" aria-label="Tiktok">
+            <Tiktok className="w-5" />
           </a>
-          <a href="mailto:cecti_tianyuan@gmail.com" aria-label="Correo">
+          <a href="mailto:tianyuancecti@gmail.com" aria-label="Correo">
             <Mail className="w-6" />
           </a>
         </div>

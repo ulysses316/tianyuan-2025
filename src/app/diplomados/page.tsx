@@ -122,7 +122,7 @@ export default async function page() {
         }
       />
       <section className="mb-12 px-4 md:px-20 lg:px-28">
-        <div className="grid grid-cols-1 gap-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(2,555px)]">
+        <div className="grid grid-cols-1 justify-center gap-4 justify-self-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[repeat(2,555px)]">
           {diplomados !== null &&
             diplomados?.data.data.map((diplomado) => (
               <DiplomadoCard
