@@ -46,7 +46,7 @@ export default async function page() {
   let pageContent: AxiosResponse<StrapiResponseDiplomadosPage> | null = null;
 
   const [diplomadosResponse, termsResponse, commentsResponse, diplomadosPageResponse] = await Promise.allSettled([
-    strapi.get<StrapiResponseDiplomado>("/api/dilpomados?populate=imagen"),
+    strapi.get<StrapiResponseDiplomado>("/api/dilpomados?populate=imagen&sort=orden_en_la_pagina:asc"),
     strapi.get<StrapiResponseTerms>("/api/terminos-y-condiciones?sort=numero:asc"),
     strapi.get<StrapiResponseComments>("/api/comentarios"),
     strapi.get<StrapiResponseDiplomadosPage>("/api/dilpomados-pagina?populate=imagen"),
@@ -143,7 +143,7 @@ export default async function page() {
         {comments !== null && <ClientsCarousel comments={comments.data.data} />}
       </section>
 
-      {terms !== null && <TermServices terms={terms.data.data} />}
+      {terms !== null && <TermServices title="Terminos y Condiciones de los diplomados" terms={terms.data.data} />}
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>

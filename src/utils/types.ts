@@ -54,11 +54,7 @@ export type CommentsCarouselProps = {
 export type TermsAndConditionsProps = {
   title?: string;
   titleId?: string;
-  terms: Array<{
-    titulo: string;
-    termino: string;
-    numero: number;
-  }>;
+  terms: StrapiResponseTerms["data"];
 };
 
 // Single Types
@@ -126,6 +122,7 @@ export type StrapiResponseServicios = StrapiResponseDefaultFieldsCollection<{
   contenido: string | TrustedHTML;
   slug: string;
   imagen: StrapiMedia;
+  orden_en_la_pagina: number;
 }>;
 
 export type StrapiResponseServicio = StrapiResponseDefaultFieldsCollection<{
@@ -142,6 +139,7 @@ export type StrapiResponseDiplomado = StrapiResponseDefaultFieldsCollection<{
   contenido: string | TrustedHTML;
   slug: string;
   imagen: StrapiMedia;
+  orden_en_la_pagina: number;
 }>;
 
 export type StrapiResponseComments = StrapiResponseDefaultFieldsCollection<{

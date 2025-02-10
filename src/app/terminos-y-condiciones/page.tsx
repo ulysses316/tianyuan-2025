@@ -41,18 +41,18 @@ export default async function page() {
           terms={termServicios?.data.data}
         />
       )}
-      {termDiplomados !== null && (
-        <TermServices
-          title="Terminos y Condiciones de los diplomados"
-          titleId="tyc-diplomados"
-          terms={termDiplomados.data.data}
-        />
-      )}
       {termSesiones !== null && (
         <TermServices
           title="Terminos y Condiciones de las 5 sesiones"
           titleId="tyc-sesiones"
           terms={termSesiones.data.data}
+        />
+      )}
+      {termDiplomados !== null && (
+        <TermServices
+          title="Terminos y Condiciones de los diplomados"
+          titleId="tyc-diplomados"
+          terms={termDiplomados.data.data}
         />
       )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

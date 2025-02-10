@@ -11,7 +11,7 @@ export default function TermServices({ terms, title, titleId }: TermsAndConditio
       )}
       {terms.map((term) => (
         <div
-          key={term.numero}
+          key={term.documentId}
           className="flex flex-col items-center justify-center gap-4 border-b-2 border-ty-1000 py-14 md:flex-row md:gap-0"
         >
           <div className="w-full text-xl md:w-1/2">
