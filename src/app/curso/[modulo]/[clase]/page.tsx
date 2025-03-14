@@ -11,8 +11,6 @@ import env from "@/utils/config";
 import Video from "@/components/couses/Video";
 import type { Metadata } from "next";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Clase",
   robots: {

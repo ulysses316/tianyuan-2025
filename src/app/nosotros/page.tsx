@@ -7,8 +7,6 @@ import BannerPages from "@/components/shared/BannerPages";
 import config from "@/utils/config";
 import "@/app/styles/ck-editor.css";
 
-export const dynamic = "force-dynamic";
-
 export async function generateMetadata() {
   const content: AxiosResponse<StrapiResponseNosotros> =
     await strapi<StrapiResponseNosotros>("/api/nosotro?populate=imagen");

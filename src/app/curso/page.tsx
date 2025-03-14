@@ -9,8 +9,6 @@ import type { AxiosResponse } from "axios";
 import type { Metadata } from "next";
 import slugifyNameVideo from "@/utils/slugifyTitleVideos";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = {
   title: "Cursos",
   robots: {

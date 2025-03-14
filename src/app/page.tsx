@@ -9,8 +9,6 @@ import { strapi } from "@/utils/strapi";
 import { notFound } from "next/navigation";
 import config from "@/utils/config";
 
-export const dynamic = "force-dynamic";
-
 export async function generateMetadata(): Promise<Metadata> {
   const dataHome: AxiosResponse<StrapiResponseHome> = await strapi.get<StrapiResponseHome>(
     "/api/home?populate=imagen_principal",
