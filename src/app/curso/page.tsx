@@ -4,9 +4,11 @@ import CourseAccordion from "@/components/couses/CourseAccordion";
 import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
 import { strapi } from "@/utils/strapi";
-import type { ModulosResponse, StrapiUserApi } from "@/utils/types";
+import type { ModulosResponse, StrapiUserApi, StrapiMedia } from "@/utils/types";
 import type { AxiosResponse } from "axios";
 import type { Metadata } from "next";
+import { Lock } from "lucide-react";
+import qs from "qs";
 
 export const metadata: Metadata = {
   title: "Cursos",
@@ -40,6 +42,25 @@ export default async function page() {
 
   const userModules = responseUser?.data[0].modulo.split(",").map((modulo) => modulo.trim());
 
+  // Files of the course
+
+  const query = qs.stringify(
+    {
+      filters: {
+        mime: {
+          $in: [
+            "application/pdf",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          ],
+        },
+      },
+    },
+    { encodeValuesOnly: true },
+  );
+
+  const responseFiles = await strapi.get(`api/upload/files?${query}`);
+
   return (
     <section className="flex min-h-[32dvh] flex-col gap-4 px-4 py-12 md:px-12">
       {responseSorted &&
@@ -54,10 +75,11 @@ export default async function page() {
             >
               <div className="flex flex-col gap-2">
                 {modulo.modulo?.video?.map((video) => (
-                  // <Link key={video.numero_de_clase} href={`/curso/${numeroDeModulo}/${slugifyNameVideo(video.titulo)}`}>
-                  //   {video.numero_de_clase} - {video.titulo}
-                  // </Link>
-                  <Link key={video.numero_de_clase} href={`/curso/${modulo.documentId}/${video.numero_de_clase}`}>
+                  <Link
+                    className="text-lg"
+                    key={video.numero_de_clase}
+                    href={`/curso/${modulo.documentId}/${video.numero_de_clase}`}
+                  >
                     {video.numero_de_clase} - {video.titulo}
                   </Link>
                 ))}
@@ -65,6 +87,24 @@ export default async function page() {
             </CourseAccordion>
           );
         })}
+
+      <details className="group relative cursor-pointer rounded-lg border-2 border-sky-300 px-4 py-2 text-sm">
+        <summary className="font-railey flex items-center justify-between text-2xl text-black">
+          Libros y recursos del curso
+          {userModules.length === 0 && <Lock />}
+        </summary>
+        {userModules.length > 0 && (
+          <div className="py-2">
+            {responseFiles.data.map((file: StrapiMedia) => (
+              <div key={file.id}>
+                <a href={file.url} target="_blank" rel="noreferrer" className="mb-2 block text-lg">
+                  {file.name}
+                </a>
+              </div>
+            ))}
+          </div>
+        )}
+      </details>
     </section>
   );
 }
