@@ -21,7 +21,7 @@ export type ParamSlug = {
 };
 
 export type VideoPageParam = {
-  params: Promise<{ modulo: string; clase: string }>;
+  params: Promise<{ documentId: string; clase: string }>;
 };
 
 export type SVG = {
@@ -156,19 +156,30 @@ export type StrapiResponseTerms = StrapiResponseDefaultFieldsCollection<{
 }>;
 
 export type ModulosResponse = StrapiResponseDefaultFieldsCollection<{
-  modulo: Modulo[];
+  id: number;
+  modulo: {
+    id: number;
+    Modulo: string;
+    video: Video[];
+  };
 }>;
 
-export type Modulo = {
-  id: number;
-  numero_de_modulo: number;
-  video: Video[];
+export type SingleModule = {
+  data: {
+    id: number;
+    modulo: {
+      id: number;
+      Modulo: string;
+      video: Video[];
+    };
+  };
 };
 
 export type Video = {
   id: number;
   titulo: string;
   numero_de_clase: number;
+  video: StrapiMedia;
 };
 
 // Strapi Media Types

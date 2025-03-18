@@ -36,7 +36,7 @@ export default function ClientsCarousel({ comments }: CommentsCarouselProps) {
             <div className="flex gap-1 pt-1.5">
               {Array.from({ length: testimonial.estrellas }, (_, i) => (
                 <span key={i}>
-                  <Star strokeWidth={1} />
+                  <Star strokeWidth={1} className="fill-yellow-300/90" />
                 </span>
               ))}
             </div>
