@@ -13,7 +13,6 @@ import BannerPages from "@/components/shared/BannerPages";
 import DiplomadoCard from "@/components/diplomados/DiplomadoCard";
 import ClientsCarousel from "@/components/clients/ClientsCarousel";
 import TermServices from "@/components/services/Terms";
-import config from "@/utils/config";
 
 export async function generateMetadata(): Promise<Metadata> {
   const pageContent: AxiosResponse<StrapiResponseDiplomadosPage> = await strapi.get<StrapiResponseDiplomadosPage>(
@@ -27,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: pageContent.data.data.parrafo_principal,
       images: [
         {
-          url: `${config.NEXT_PUBLIC_API_URL}${pageContent.data.data.imagen.url}`,
+          url: `${pageContent.data.data.imagen.url}`,
           width: 1200,
           height: 630,
           alt: "Centro de terapias y acupuntura Tian Yuan",
@@ -115,7 +114,7 @@ export default async function page() {
         text={pageContent?.data.data.parrafo_principal || ""}
         src={
           typeof pageContent?.data.data.imagen.url !== undefined
-            ? `${config.NEXT_PUBLIC_API_URL}${pageContent?.data.data.imagen.url}`
+            ? `${pageContent?.data.data.imagen.url}`
             : "/images/about-us.jpg"
         }
       />
@@ -128,11 +127,7 @@ export default async function page() {
                 title={diplomado.titulo}
                 description={diplomado.descripcion}
                 href={diplomado.slug}
-                src={
-                  typeof diplomado.imagen?.url !== "undefined"
-                    ? `${config.NEXT_PUBLIC_API_URL}${diplomado.imagen?.url}`
-                    : "/images/about-us.jpg"
-                }
+                src={typeof diplomado.imagen?.url !== "undefined" ? `${diplomado.imagen?.url}` : "/images/about-us.jpg"}
               />
             ))}
         </div>

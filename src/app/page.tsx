@@ -7,7 +7,6 @@ import { AxiosResponse } from "axios";
 import { StrapiResponseHome, StrapiResponseComments } from "@/utils/types";
 import { strapi } from "@/utils/strapi";
 import { notFound } from "next/navigation";
-import config from "@/utils/config";
 
 export async function generateMetadata(): Promise<Metadata> {
   const dataHome: AxiosResponse<StrapiResponseHome> = await strapi.get<StrapiResponseHome>(
@@ -24,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
         {
           url:
             typeof dataHome.data.data?.imagen_principal?.url !== "undefined"
-              ? `${config.NEXT_PUBLIC_API_URL}${dataHome.data.data?.imagen_principal?.url}`
+              ? `${dataHome.data.data?.imagen_principal?.url}`
               : "/images/health.jpg",
           width: 1200,
           height: 630,
@@ -126,7 +125,7 @@ export default async function Home() {
                 className="object-cover md:rounded-full"
                 src={
                   typeof dataHome.data.data?.imagen_principal?.url !== "undefined"
-                    ? `${config.NEXT_PUBLIC_API_URL}${dataHome.data.data?.imagen_principal?.url}`
+                    ? `${dataHome.data.data?.imagen_principal?.url}`
                     : "/images/health.jpg"
                 }
                 alt=""

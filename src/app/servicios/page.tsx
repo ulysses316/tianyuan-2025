@@ -13,7 +13,6 @@ import BannerPages from "@/components/shared/BannerPages";
 import ServiceCard from "@/components/services/ServiceCard";
 import ClientsCarousel from "@/components/clients/ClientsCarousel";
 import TermServices from "@/components/services/Terms";
-import config from "@/utils/config";
 
 export async function generateMetadata(): Promise<Metadata> {
   const pageContent: AxiosResponse<StrapiResponseServicePage> = await strapi.get<StrapiResponseServicePage>(
@@ -27,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
       description: pageContent.data.data.parrafo_principal,
       images: [
         {
-          url: `${config.NEXT_PUBLIC_API_URL}${pageContent.data.data.imagen.url}`,
+          url: `${pageContent.data.data.imagen.url}`,
           width: 1200,
           height: 630,
           alt: "Centro de terapias y acupuntura Tian Yuan",
@@ -69,7 +68,7 @@ export default async function page() {
         provider: {
           "@type": "LocalBusiness",
           name: "Centro de Terapias y Acupuntura Tian Yuan",
-          image: `${config.NEXT_PUBLIC_API_URL}${service.imagen.url}`,
+          image: `${service.imagen.url}`,
           address: {
             "@type": "PostalAddress",
             streetAddress: "5 de Mayo 25",
@@ -104,7 +103,7 @@ export default async function page() {
         text={pageContent?.data.data.parrafo_principal || ""}
         src={
           typeof pageContent?.data.data.imagen.url !== undefined
-            ? `${config.NEXT_PUBLIC_API_URL}${pageContent?.data.data.imagen.url}`
+            ? `${pageContent?.data.data.imagen.url}`
             : "/images/about-us.jpg"
         }
       />
@@ -117,11 +116,7 @@ export default async function page() {
                 title={service.titulo}
                 description={service.descripcion}
                 href={service.slug}
-                src={
-                  typeof service.imagen?.url !== "undefined"
-                    ? `${config.NEXT_PUBLIC_API_URL}${service.imagen?.url}`
-                    : "/images/about-us.jpg"
-                }
+                src={typeof service.imagen?.url !== "undefined" ? `${service.imagen?.url}` : "/images/about-us.jpg"}
               />
             ))}
         </div>

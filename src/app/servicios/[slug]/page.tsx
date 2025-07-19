@@ -6,7 +6,6 @@ import { StrapiResponseServicio } from "@/utils/types";
 import { notFound } from "next/navigation";
 import BannerPages from "@/components/shared/BannerPages";
 import type { ParamSlug } from "@/utils/types";
-import config from "@/utils/config";
 import "@/app/styles/ck-editor.css";
 
 export async function generateMetadata({ params }: ParamSlug): Promise<Metadata> {
@@ -24,7 +23,7 @@ export async function generateMetadata({ params }: ParamSlug): Promise<Metadata>
         {
           url:
             typeof content.data.data[0].imagen?.url !== "undefined"
-              ? `${config.NEXT_PUBLIC_API_URL}${content.data.data[0].imagen?.url}`
+              ? `${content.data.data[0].imagen?.url}`
               : "/images/about-us.jpg",
           width: 1200,
           height: 630,
@@ -49,7 +48,7 @@ export default async function page({ params }: ParamSlug) {
     provider: {
       "@type": "LocalBusiness",
       name: "Centro de Terapias y Acupuntura Tian Yuan",
-      image: `${config.NEXT_PUBLIC_API_URL}${content.data.data[0].imagen.url}`,
+      image: `${content.data.data[0].imagen.url}`,
       address: {
         "@type": "PostalAddress",
         streetAddress: "5 de Mayo 25",
@@ -75,17 +74,11 @@ export default async function page({ params }: ParamSlug) {
 
   if (content.status !== 200) return notFound();
 
+  const imgSrc = content.data.data[0].imagen?.url || "/images/about-us.jpg";
+
   return (
     <>
-      <BannerPages
-        title={content.data.data[0].titulo}
-        text={content.data.data[0].descripcion}
-        src={
-          typeof content.data.data[0].imagen?.url !== "undefined"
-            ? `${config.NEXT_PUBLIC_API_URL}${content.data.data[0].imagen?.url}`
-            : "/images/about-us.jpg"
-        }
-      />
+      <BannerPages title={content.data.data[0].titulo} text={content.data.data[0].descripcion} src={imgSrc} />
       <section className="mb-12 flex items-center justify-center">
         <div
           className="ck-content prose prose-lg px-4 prose-headings:font-cormorant prose-a:break-all prose-figure:rounded-lg prose-img:rounded-lg md:px-0"

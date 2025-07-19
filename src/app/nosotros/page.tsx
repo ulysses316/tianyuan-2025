@@ -4,7 +4,6 @@ import { AxiosResponse } from "axios";
 import { StrapiResponseNosotros } from "@/utils/types";
 import { notFound } from "next/navigation";
 import BannerPages from "@/components/shared/BannerPages";
-import config from "@/utils/config";
 import "@/app/styles/ck-editor.css";
 
 export async function generateMetadata() {
@@ -21,7 +20,7 @@ export async function generateMetadata() {
         {
           url:
             typeof content.data.data.imagen.url !== undefined
-              ? `${config.NEXT_PUBLIC_API_URL}${content.data.data.imagen.url}`
+              ? `${content.data.data.imagen.url}`
               : "/images/about-us.jpg",
           width: 1200,
           height: 630,
@@ -43,7 +42,7 @@ export default async function page() {
       "@type": "Organization",
       name: "Centro de Terapias y Acupuntura Tian Yuan",
       url: "https://www.terapias-tianyuan.com",
-      image: `${config.NEXT_PUBLIC_API_URL}${content.data.data.imagen.url}`,
+      image: `${content.data.data.imagen.url}`,
       description:
         "Somos un centro especializado en terapias alternativas y acupuntura, dedicado al bienestar integral.",
       address: {
@@ -66,9 +65,7 @@ export default async function page() {
         title="Sobre nosotros"
         text={content.data.data.descripcion}
         src={
-          typeof content.data.data.imagen.url !== undefined
-            ? `${config.NEXT_PUBLIC_API_URL}${content.data.data.imagen.url}`
-            : "/images/about-us.jpg"
+          typeof content.data.data.imagen.url !== undefined ? `${content.data.data.imagen.url}` : "/images/about-us.jpg"
         }
       />
       <section className="mb-12 flex items-center justify-center">

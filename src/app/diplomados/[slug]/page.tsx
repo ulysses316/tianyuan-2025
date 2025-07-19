@@ -6,7 +6,6 @@ import { StrapiResponseDiplomado } from "@/utils/types";
 import { notFound } from "next/navigation";
 import BannerPages from "@/components/shared/BannerPages";
 import type { ParamSlug } from "@/utils/types";
-import config from "@/utils/config";
 import "@/app/styles/ck-editor.css";
 
 export async function generateMetadata({ params }: ParamSlug): Promise<Metadata> {
@@ -24,7 +23,7 @@ export async function generateMetadata({ params }: ParamSlug): Promise<Metadata>
         {
           url:
             typeof content.data.data[0].imagen.url !== "undefined"
-              ? `${config.NEXT_PUBLIC_API_URL}${content.data.data[0].imagen.url}`
+              ? `${content.data.data[0].imagen.url}`
               : "/images/about-us.jpg",
           width: 1200,
           height: 630,
@@ -47,7 +46,7 @@ export default async function page({ params }: ParamSlug) {
     "@type": "Course",
     name: slug,
     description: content.data.data[0].descripcion,
-    image: `${config.NEXT_PUBLIC_API_URL}${content.data.data[0].imagen.url}`,
+    image: `${content.data.data[0].imagen.url}`,
     availableLanguage: ["es-MX"],
     location: "Centro de Terapias y Acupuntura Tian Yuan",
     provider: {
@@ -98,7 +97,7 @@ export default async function page({ params }: ParamSlug) {
         text={content.data.data[0].descripcion}
         src={
           typeof content.data.data[0].imagen.url !== "undefined"
-            ? `${config.NEXT_PUBLIC_API_URL}${content.data.data[0].imagen.url}`
+            ? `${content.data.data[0].imagen.url}`
             : "/images/about-us.jpg"
         }
       />

@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "*.terapias-tianyuan.com",
+      },
+      {
+        protocol: "https",
+        hostname: "tianyuan.s3.us-east-1.amazonaws.com"
       }
     ]
   }
