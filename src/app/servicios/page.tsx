@@ -20,10 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
   );
   return {
     title: "Servicios",
-    description: pageContent.data.data.parrafo_principal,
+    description:
+      "Acupuntura, fisioterapia, auriculoterapia, moxibustión, masajes y doula en Ecatepec de Morelos. Terapias personalizadas basadas en medicina tradicional china.",
     openGraph: {
       title: "Servicios",
-      description: pageContent.data.data.parrafo_principal,
+      description:
+        "Acupuntura, fisioterapia, auriculoterapia, moxibustión, masajes y doula en Ecatepec de Morelos. Terapias personalizadas basadas en medicina tradicional china.",
       images: [
         {
           url: `${pageContent.data.data.imagen.url}`,
@@ -63,32 +65,15 @@ export default async function page() {
       position: index + 1,
       item: {
         "@type": "Service",
-        serviceType: service.titulo,
-        name: `Servicio de ${service.titulo}`,
+        "@id": `https://www.terapias-tianyuan.com/servicios/${service.slug}`,
+        name: service.titulo,
+        url: `https://www.terapias-tianyuan.com/servicios/${service.slug}`,
+        description: service.descripcion ?? undefined,
+        image: service.imagen?.url ?? undefined,
         provider: {
-          "@type": "LocalBusiness",
+          "@type": "HealthAndBeautyBusiness",
+          "@id": "https://www.terapias-tianyuan.com",
           name: "Centro de Terapias y Acupuntura Tian Yuan",
-          image: `${service.imagen.url}`,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "5 de Mayo 25",
-            addressLocality: "San Cristóbal Centro",
-            postalCode: "55000",
-            addressRegion: "México",
-            addressCountry: "MX",
-            telephone: "5531202502",
-          },
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: 19.601640178869076,
-            longitude: -99.04384808926673,
-          },
-          url: `https://www.terapias-tianyuan.com/servicios/${service.slug}`,
-          priceRange: "$",
-          areaServed: {
-            "@type": "Place",
-            name: "Ecatepec de Morelos",
-          },
         },
       },
     })),

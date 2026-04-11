@@ -14,11 +14,13 @@ export async function generateMetadata(): Promise<Metadata> {
   );
 
   return {
-    title: "Inicio | Centro de terapias y acupuntura Tian Yuan",
-    description: dataHome.data.data.parrafo_principal,
+    title: "Acupuntura y Terapias en Ecatepec | Tian Yuan",
+    description:
+      "Centro de acupuntura y medicina tradicional china en Ecatepec de Morelos. Tratamientos para dolor crónico, estrés, problemas ginecológicos y más. Agenda por WhatsApp.",
     openGraph: {
-      title: "Inicio | Centro de terapias y acupuntura Tian Yuan",
-      description: dataHome.data.data.parrafo_principal,
+      title: "Acupuntura y Terapias en Ecatepec | Tian Yuan",
+      description:
+        "Centro de acupuntura y medicina tradicional china en Ecatepec de Morelos. Tratamientos para dolor crónico, estrés, problemas ginecológicos y más. Agenda por WhatsApp.",
       images: [
         {
           url:
@@ -46,54 +48,60 @@ export default async function Home() {
   if (dataHomeResponse.status === "fulfilled") dataHome = dataHomeResponse.value;
   if (commentsResponse.status === "fulfilled") comments = commentsResponse.value;
 
-  const jsonLd = {
+  const jsonLdWebsite = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Centro de Terapias y Acupuntura Tian Yuan",
     url: "https://www.terapias-tianyuan.com",
-    publisher: {
-      "@type": "Organization",
-      name: "Centro de Terapias y Acupuntura Tian Yuan",
-      url: "https://www.terapias-tianyuan.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "5 de Mayo 25",
-        addressLocality: "San Cristóbal Centro",
-        postalCode: "55000",
-        addressRegion: "México",
-        addressCountry: "MX",
-        telephone: "5531202502",
-      },
-    },
   };
 
-  const jsonLdPages = {
+  const jsonLdLocalBusiness = {
+    "@context": "https://schema.org",
+    "@type": "HealthAndBeautyBusiness",
+    name: "Centro de Terapias y Acupuntura Tian Yuan",
+    url: "https://www.terapias-tianyuan.com",
+    telephone: "+525531202502",
+    email: "contacto@terapias-tianyuan.com",
+    image: "https://www.terapias-tianyuan.com/logo.webp",
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "5 de Mayo 25",
+      addressLocality: "Ecatepec de Morelos",
+      addressRegion: "Estado de México",
+      postalCode: "55000",
+      addressCountry: "MX",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 19.60163388031027,
+      longitude: -99.04383065152842,
+    },
+    hasMap: "https://maps.app.goo.gl/xh2kmGdzPFDXef4V7",
+    sameAs: ["https://api.whatsapp.com/send/?phone=5531202502"],
+    makesOffer: [
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Acupuntura" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Fisioterapia y rehabilitación física" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Auriculoterapia" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Moxibustión" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Masajes" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "Doula" } },
+    ],
+  };
+
+  const jsonLdBreadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.terapias-tianyuan.com/" },
+      { "@type": "ListItem", position: 2, name: "Nosotros", item: "https://www.terapias-tianyuan.com/nosotros" },
+      { "@type": "ListItem", position: 3, name: "Servicios", item: "https://www.terapias-tianyuan.com/servicios" },
+      { "@type": "ListItem", position: 4, name: "Diplomados", item: "https://www.terapias-tianyuan.com/diplomados" },
       {
         "@type": "ListItem",
-        position: 1,
-        name: "Nosotros",
-        item: "https://terapias-tianyuan.com/nosotros",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Servicios",
-        item: "https://terapias-tianyuan.com/servicios",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "Diplomados",
-        item: "https://terapias-tianyuan.com/diplomados",
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        name: "Terminos y condiciones",
-        item: "https://terapias-tianyuan.com/terminos-y-condiciones",
+        position: 5,
+        name: "Términos y condiciones",
+        item: "https://www.terapias-tianyuan.com/terminos-y-condiciones",
       },
     ],
   };
@@ -176,8 +184,9 @@ export default async function Home() {
           {comments !== null && <ClientsCarousel comments={comments.data.data} />}
         </section>
 
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPages) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdLocalBusiness) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       </>
     )
   );

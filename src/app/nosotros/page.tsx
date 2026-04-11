@@ -12,10 +12,12 @@ export async function generateMetadata() {
 
   return {
     title: "Nosotros",
-    description: content.data.data.descripcion,
+    description:
+      "Conoce al equipo de Tian Yuan, centro especializado en acupuntura y medicina tradicional china en Ecatepec. Más de 8 años de experiencia en bienestar integral.",
     openGraph: {
       title: "Nosotros",
-      description: content.data.data.descripcion,
+      description:
+        "Conoce al equipo de Tian Yuan, centro especializado en acupuntura y medicina tradicional china en Ecatepec. Más de 8 años de experiencia en bienestar integral.",
       images: [
         {
           url:

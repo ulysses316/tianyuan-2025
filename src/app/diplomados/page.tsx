@@ -20,10 +20,12 @@ export async function generateMetadata(): Promise<Metadata> {
   );
   return {
     title: "Diplomados",
-    description: pageContent.data.data.parrafo_principal,
+    description:
+      "Diplomados en acupuntura y medicina tradicional china en Ecatepec. Formación profesional con la Dra. Brisa Arely Oviedo. Cupos limitados, inscripciones abiertas.",
     openGraph: {
       title: "Diplomados",
-      description: pageContent.data.data.parrafo_principal,
+      description:
+        "Diplomados en acupuntura y medicina tradicional china en Ecatepec. Formación profesional con la Dra. Brisa Arely Oviedo. Cupos limitados, inscripciones abiertas.",
       images: [
         {
           url: `${pageContent.data.data.imagen.url}`,
@@ -58,51 +60,50 @@ export default async function page() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Diplomados en Centro de Terapias y Acupuntura Tian Yuan",
-    itemListElement: diplomados?.data.data.map((diplomado) => {
-      return {
+    itemListElement: diplomados?.data.data.map((diplomado, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
         "@type": "Course",
+        "@id": `https://www.terapias-tianyuan.com/diplomados/${diplomado.slug}`,
         name: `Diplomado en ${diplomado.titulo}`,
-        description: diplomado.descripcion,
-        availableLanguage: ["es-MX"],
+        description: diplomado.descripcion ?? undefined,
+        url: `https://www.terapias-tianyuan.com/diplomados/${diplomado.slug}`,
+        image: diplomado.imagen?.url ?? undefined,
+        inLanguage: "es-MX",
         provider: {
-          "@type": "Organization",
+          "@type": "HealthAndBeautyBusiness",
+          "@id": "https://www.terapias-tianyuan.com",
           name: "Centro de Terapias y Acupuntura Tian Yuan",
-          url: `https://www.terapias-tianyuan.com/${diplomado.slug}`,
-          image: diplomado.imagen.url,
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "5 de Mayo 25",
-            addressLocality: "San Cristóbal Centro",
-            postalCode: "55000",
-            addressRegion: "México",
-            addressCountry: "MX",
-            telephone: "5531202502",
-          },
         },
         offers: [
           {
             "@type": "Offer",
             category: "Paid",
             priceCurrency: "MXN",
+            // price: diplomado.precio ?? undefined,  // descomenta si tienes el campo
+            url: `https://www.terapias-tianyuan.com/diplomados/${diplomado.slug}`,
           },
         ],
         hasCourseInstance: {
           "@type": "CourseInstance",
-          courseMode: ["Online", "Onsite"],
+          courseMode: ["OnlineEventAttendanceMode", "OfflineEventAttendanceMode"],
+          inLanguage: "es-MX",
           courseSchedule: {
             "@type": "Schedule",
             duration: "PT3H",
-            repeatCount: 52,
             repeatFrequency: "Weekly",
           },
+          instructor: {
+            "@type": "Person",
+            name: "Brisa Arely Oviedo Yañez",
+            jobTitle: "Licenciada en Acupuntura Humana Rehabilitatoria",
+            description: "Especialista en acupuntura y terapias complementarias.",
+            url: "https://www.terapias-tianyuan.com/nosotros",
+          },
         },
-        instructor: {
-          "@type": "Person",
-          name: "LAHR (Licenciada en Acupuntura Humana Rehabilitatoria) Brisa Arely Oviedo Yañez",
-          description: "Especialista en acupuntura y terapias complementarias.",
-        },
-      };
-    }),
+      },
+    })),
   };
 
   if (!diplomados && !terms && !comments && !pageContent) return notFound();
