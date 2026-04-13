@@ -78,7 +78,10 @@ export default async function Home() {
       longitude: -99.04383065152842,
     },
     hasMap: "https://maps.app.goo.gl/xh2kmGdzPFDXef4V7",
-    sameAs: ["https://api.whatsapp.com/send/?phone=5531202502"],
+    sameAs: [
+      "https://www.facebook.com/people/Terapias-Integrativas-Tian-Yuan/100091659327893/",
+      "https://www.tiktok.com/@acutianyuan",
+    ],
     makesOffer: [
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Acupuntura" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Fisioterapia y rehabilitación física" } },
@@ -87,6 +90,11 @@ export default async function Home() {
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Masajes" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "Doula" } },
     ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "19",
+    },
   };
 
   const jsonLdBreadcrumb = {
@@ -122,7 +130,7 @@ export default async function Home() {
               <Button target="_blank" href="https://api.whatsapp.com/send/?phone=5531202502" className="">
                 Agenda una cita
               </Button>
-              <LinkWArrow href="/servicios">Explora nuestos servicios</LinkWArrow>
+              <LinkWArrow href="/servicios">Explora nuestros servicios</LinkWArrow>
             </div>
           </div>
           <div className="-order-1 justify-self-center md:order-1">
